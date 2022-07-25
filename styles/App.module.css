@@ -1,0 +1,17 @@
+.header_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 100vh;
+  background-image: linear-gradient(102deg, #eba61d 0%, #f38415 45%, #eba61d 45%, white 45%); }
+
+.header_text {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+
+.header_image {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .header_image img {
+    border-radius: 50%; }

@@ -7,11 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "watch:css": "node-sass sass/style.scss styles/App.css -w",
+    "watch:css": "node-sass sass/style.scss styles/App.module.css -w",
     "compile:css": "node-sass sass/style.scss styles/App.comp.css",
     "concat:css": "concat -o styles/App.concat.css styles/App.comp.css",
     "prefix:css": "postcss --use autoprefixer -b \"last 10 version\" styles/App.concat.css -o styles/App.prefix.css",
-    "compress:css": "node-sass styles/App.prefix.css styles/App.css --output-style compressed",
+    "compress:css": "node-sass styles/App.prefix.css styles/App.module.css --output-style compressed",
     "build:css": "npm-run-all compile:css concat:css prefix:css compress:css"
   },
   "dependencies": {

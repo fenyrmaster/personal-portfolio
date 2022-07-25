@@ -1,0 +1,21 @@
+.header{
+    &_container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        height: 100vh;
+        background-image: linear-gradient(102deg, rgb(235, 166, 29) 0%, rgb(243, 132, 21) 45%, rgb(235, 166, 29) 45%, rgb(255, 255, 255) 45%);
+    }
+    &_text{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    &_image{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            border-radius: 50%;
+        }
+    }
+}
