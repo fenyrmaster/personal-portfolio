@@ -17,6 +17,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
+    "canvas-sketch-util": "^1.10.0",
     "concat": "^1.0.3",
     "next": "12.2.3",
     "node-sass": "^7.0.1",

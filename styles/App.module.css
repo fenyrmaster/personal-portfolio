@@ -10,8 +10,13 @@
   flex-direction: column; }
 
 .header_image {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center; }
   .header_image img {
-    border-radius: 50%; }
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%); }

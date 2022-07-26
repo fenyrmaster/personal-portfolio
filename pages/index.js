@@ -1,8 +1,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import styles from "../styles/App.module.css"
+import CanvasRodeo from "../sketch/rodeo-amarillo"
 
 export default function Home() {
+  
+
   return (
     <>
       <header className={styles.header_container}>
@@ -12,7 +15,8 @@ export default function Home() {
           <Link href="/about-me"><a>More about me</a></Link>
         </div>
         <div className={styles.header_image}>
-          <Image src="/images/default.jpg" width={300} height={300}/>
+          <img src="/images/default.jpg" width={300} height={300}/>
+          <CanvasRodeo/>
         </div>
       </header>
     </>
