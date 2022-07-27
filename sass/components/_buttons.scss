@@ -1,0 +1,53 @@
+.btn1{
+    position: relative;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    background-color: white;
+    border: .1rem solid rgb(255, 102, 0);
+    border-radius: 2rem;
+    display: block;
+    align-self: flex-start;
+    margin: 2rem 0;
+    font-size: 1.3rem;
+    padding: .7rem 2rem;
+    overflow: hidden;
+    transition: background-color 1s, color .7s;
+    &::before{
+        position: absolute;
+        content: "";
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: rgb(255, 102, 0);
+        top: 50%;
+        left: -5%;
+        transform: translate(-50%, -50%);
+        transition: .5s;
+    }
+    &::after{
+        position: absolute;
+        content: "";
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: rgb(255, 102, 0);
+        top: 50%;
+        right: -13%;
+        transform: translate(-50%, -50%);
+        transition: .5s;
+    }
+    &:hover{
+        background-color: rgb(255, 102, 0);
+        color: white;
+        &::after{
+            transform: scale(10) translateX(-.25rem);
+        }
+        &::before{
+            transform: scale(10) translateX(.25rem);
+        }
+    }
+}
+.btnText{
+    position: relative;
+    z-index: 5;
+}

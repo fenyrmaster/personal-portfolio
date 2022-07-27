@@ -9,6 +9,7 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
+        margin: 0rem 1rem 4rem 4rem;
     }
     &_image{
         position: relative;
@@ -22,5 +23,25 @@
             right: 50%;
             transform: translate(50%, -50%);
         }
+    }
+    &_title{
+        margin: 0;
+        font-family: "Ubuntu Condensed", sans-serif;
+        font-weight: 600;
+        color: white;
+        font-size: 5rem;
+        width: 80%;
+    }
+    &_paragraph{
+        color: white;
+        font-size: 2rem;
+        font-family: "Manrope", sans-serif;
+        font-weight: 100;
+        margin: 1rem 0 0 0;
+        width: 60%;
+    }
+    &_span{
+        text-transform: uppercase;
+        color: rgb(238, 255, 0);
     }
 }

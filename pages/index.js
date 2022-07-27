@@ -10,9 +10,10 @@ export default function Home() {
     <>
       <header className={styles.header_container}>
         <div className={styles.header_text}>
-          <h1>I design sites that empower brands</h1>
-          <p>lorem ipsum dolor no se que mas poner aqui xd</p>
-          <Link href="/about-me"><a>More about me</a></Link>
+          <h1 className={styles.header_title}>I'm <span className={styles.header_span}>brandon</span> Yahir. </h1>
+          <h2 className={styles.header_title}>I develop <span className={styles.header_span}>sites</span> that <span className={styles.header_span}>empower</span> brands.</h2>
+          <p className={styles.header_paragraph}>Are you looking for a website to manage your business? Or reach more clients? i got you covered.</p>
+          <Link href="/about-me"><a className={styles.btn1}><span className={styles.btnText}>More about me</span></a></Link>
         </div>
         <div className={styles.header_image}>
           <img src="/images/default.jpg" width={300} height={300}/>

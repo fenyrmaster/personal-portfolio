@@ -7,7 +7,8 @@
 .header_text {
   display: flex;
   justify-content: center;
-  flex-direction: column; }
+  flex-direction: column;
+  margin: 0rem 1rem 4rem 4rem; }
 
 .header_image {
   position: relative;
@@ -20,3 +21,71 @@
     top: 50%;
     right: 50%;
     transform: translate(50%, -50%); }
+
+.header_title {
+  margin: 0;
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-weight: 600;
+  color: white;
+  font-size: 5rem;
+  width: 80%; }
+
+.header_paragraph {
+  color: white;
+  font-size: 2rem;
+  font-family: "Manrope", sans-serif;
+  font-weight: 100;
+  margin: 1rem 0 0 0;
+  width: 60%; }
+
+.header_span {
+  text-transform: uppercase;
+  color: #eeff00; }
+
+.btn1 {
+  position: relative;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  background-color: white;
+  border: 0.1rem solid #ff6600;
+  border-radius: 2rem;
+  display: block;
+  align-self: flex-start;
+  margin: 2rem 0;
+  font-size: 1.3rem;
+  padding: .7rem 2rem;
+  overflow: hidden;
+  transition: background-color 1s, color .7s; }
+  .btn1::before {
+    position: absolute;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: #ff6600;
+    top: 50%;
+    left: -5%;
+    transform: translate(-50%, -50%);
+    transition: .5s; }
+  .btn1::after {
+    position: absolute;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: #ff6600;
+    top: 50%;
+    right: -13%;
+    transform: translate(-50%, -50%);
+    transition: .5s; }
+  .btn1:hover {
+    background-color: #ff6600;
+    color: white; }
+    .btn1:hover::after {
+      transform: scale(10) translateX(-0.25rem); }
+    .btn1:hover::before {
+      transform: scale(10) translateX(0.25rem); }
+
+.btnText {
+  position: relative;
+  z-index: 5; }
