@@ -12,3 +12,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.swiper-wrapper{
+  transition-timing-function: linear !important;
+}

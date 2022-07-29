@@ -2,8 +2,19 @@ import Link from "next/link"
 import Image from "next/image"
 import styles from "../styles/App.module.css"
 import CanvasRodeo from "../sketch/rodeo-amarillo"
+import { Swiper, SwiperSlide } from "swiper/react";
+import Skill from "../components/skill";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/grid";
+import "swiper/css/pagination";
+import "swiper/css/bundle";
+
+import { Autoplay, Pagination, FreeMode, Grid } from "swiper";
 
 export default function Home() {
+  
   
 
   return (
@@ -20,6 +31,39 @@ export default function Home() {
           <CanvasRodeo/>
         </div>
       </header>
+      <section className={styles.section2}>
+        <h2 className={styles.subtitle}>My skills</h2>
+        <div className={styles.swiperWrapper}>
+          <Swiper
+            spaceBetween={30}
+            speed={7000}
+            slidesPerView={6}
+            centeredSlides={true}
+            grabCursor={true}
+            loop={true}
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+            }}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev"
+            }}
+            freeMode={true}
+            modules={[Grid, Autoplay, FreeMode]}
+            className={styles.swiperSkills}
+          >
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+          </Swiper>
+        </div>
+      </section>
     </>
   )
 }
