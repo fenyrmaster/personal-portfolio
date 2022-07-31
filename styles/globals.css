@@ -16,3 +16,11 @@ a {
 .swiper-wrapper{
   transition-timing-function: linear !important;
 }
+.swiper-initialized{
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  border: .2rem dashed rgb(59, 59, 59);
+}
+.swiper-initialized:first-of-type{
+}

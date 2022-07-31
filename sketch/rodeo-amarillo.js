@@ -59,7 +59,7 @@ const CanvasRodeo = () => {
             }
           }
         
-        context.fillStyle = 'white';
+        context.fillStyle = 'rgb(255, 250, 238)';
         context.fillRect(0, 0, width, height);
         
         context.fillStyle = "black";
@@ -82,7 +82,7 @@ const CanvasRodeo = () => {
         
         const animate = () => {
             requestAnimationFrame(animate);
-            context.fillStyle = 'white';
+            context.fillStyle = 'rgb(255, 250, 238)';
             context.fillRect(0, 0, width, height);
      
             circulos.forEach(el => {

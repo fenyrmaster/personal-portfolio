@@ -32,7 +32,10 @@ export default function Home() {
         </div>
       </header>
       <section className={styles.section2}>
-        <h2 className={styles.subtitle}>My skills</h2>
+        <div className={styles.subtitleWrapper}>
+          <h2 className={styles.subtitle}>My skills</h2>  
+        </div>
+        <h4 className={styles.separators}>Front-end Skills:</h4>
         <div className={styles.swiperWrapper}>
           <Swiper
             spaceBetween={30}
@@ -62,6 +65,40 @@ export default function Home() {
             <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
             <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
           </Swiper>
+        </div>
+        <div className={styles.organizer}>
+        <h4 className={styles.separators}>Back-end Skills:</h4>
+        <div className={styles.swiperWrapper}>
+          <Swiper
+            spaceBetween={30}
+            speed={7000}
+            slidesPerView={6}
+            centeredSlides={true}
+            grabCursor={true}
+            loop={true}
+            autoplay={{
+              delay: 0,
+              reverseDirection: true,
+              disableOnInteraction: false,
+            }}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev"
+            }}
+            freeMode={true}
+            modules={[Grid, Autoplay, FreeMode]}
+            className={styles.swiperSkills2}
+          >
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+          </Swiper>
+        </div>
         </div>
       </section>
     </>

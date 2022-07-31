@@ -15,6 +15,8 @@
     "build:css": "npm-run-all compile:css concat:css prefix:css compress:css"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
     "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
     "canvas-sketch-util": "^1.10.0",

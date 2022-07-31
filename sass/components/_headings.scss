@@ -1,0 +1,50 @@
+.subtitle{
+    position: relative;
+    font-size: 3rem;
+    font-family: "Manrope", sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    border-top: .5rem dotted orangered;
+    border-bottom: .5rem dotted orangered;
+    padding: .5rem 2rem;
+    margin: 1rem 0;
+    &::after{
+        content: "";
+        width: 0;
+        height: .5rem;
+        top: -.5rem;
+        left: 50%;
+        background-color: orangered;
+        position: absolute;
+        transition: width .5s;
+        transform: translateX(-50%);
+    }
+    &::before{
+        transform: translateX(-50%);
+        content: "";
+        width: 0;
+        height: .5rem;
+        bottom: -.5rem;
+        left: 50%;
+        background-color: orangered;
+        transition: width .5s;
+        position: absolute;
+    }
+    &:hover{
+        &::before,
+        &::after{
+            width: 100%;
+        }
+    }
+}
+.subtitleWrapper{
+    padding: 4rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section2{
+    background-color: rgb(255, 250, 238);
+}

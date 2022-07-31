@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   height: 100vh;
-  background-image: linear-gradient(102deg, #eba61d 0%, #f38415 45%, #eba61d 45%, white 45%); }
+  background-image: linear-gradient(102deg, #eba61d 0%, #f38415 45%, #eba61d 45%, #fffaee 45%); }
 
 .header_text {
   display: flex;
@@ -91,21 +91,110 @@
   z-index: 5; }
 
 .swiperSkills {
-  width: 100%;
-  height: 60%;
+  width: 80%;
+  height: 50%;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  background-image: linear-gradient(to right bottom, rgba(255, 230, 0, 0.692), rgba(251, 255, 0, 0.329)), url("/images/frontEnd-IMG.jpg"); }
+
+.swiperSkills2 {
+  width: 80%;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: linear-gradient(to right bottom, rgba(255, 230, 0, 0.692), rgba(251, 255, 0, 0.329)), url("/images/backEnd-IMG.jpg"); }
 
 .swiperSlide {
   text-align: center;
+  overflow: hidden;
+  position: relative;
   font-size: 18px;
-  background-color: red;
-  height: 40% !important;
+  background-color: white;
+  height: 70% !important;
   width: 15rem !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: center; }
+  align-self: center;
+  border-radius: .5rem; }
 
 .swiperWrapper {
   height: 50rem; }
+
+.swiperContent {
+  display: flex;
+  flex-direction: column; }
+
+.swiperName {
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0; }
+
+.swiperImage {
+  border-radius: 50%;
+  object-fit: cover; }
+
+.skillText {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin-bottom: 0; }
+
+.skillLevel {
+  margin: 0 0 2rem 0;
+  font-family: "Shadows Into Light", sans-serif;
+  font-size: 1.8rem; }
+
+.separators {
+  text-align: center;
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-size: 1.8rem;
+  margin: 0 0 .5rem 0; }
+
+.organizer {
+  margin-top: -19rem; }
+
+.subtitle {
+  position: relative;
+  font-size: 3rem;
+  font-family: "Manrope", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  border-top: .5rem dotted orangered;
+  border-bottom: .5rem dotted orangered;
+  padding: .5rem 2rem;
+  margin: 1rem 0; }
+  .subtitle::after {
+    content: "";
+    width: 0;
+    height: .5rem;
+    top: -.5rem;
+    left: 50%;
+    background-color: orangered;
+    position: absolute;
+    transition: width .5s;
+    transform: translateX(-50%); }
+  .subtitle::before {
+    transform: translateX(-50%);
+    content: "";
+    width: 0;
+    height: .5rem;
+    bottom: -.5rem;
+    left: 50%;
+    background-color: orangered;
+    transition: width .5s;
+    position: absolute; }
+  .subtitle:hover::before, .subtitle:hover::after {
+    width: 100%; }
+
+.subtitleWrapper {
+  padding: 4rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.section2 {
+  background-color: #fffaee; }
