@@ -4,6 +4,7 @@ import styles from "../styles/App.module.css"
 import CanvasRodeo from "../sketch/rodeo-amarillo"
 import { Swiper, SwiperSlide } from "swiper/react";
 import Skill from "../components/skill";
+import Project from "../components/project";
 
 // Import Swiper styles
 import "swiper/css";
@@ -99,6 +100,22 @@ export default function Home() {
             <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
           </Swiper>
         </div>
+        </div>
+      </section>
+      <section className={styles.section3}>
+        <div className={styles.subtitleWrapper}>
+          <h2 className={styles.subtitle}>My Projects</h2>  
+        </div>
+        <div className={styles.projectsContainer}>
+            <Project/>
+            <Project/>
+            <Project/>
+            <Project/>
+            <Project/>
+            <Project/>
+            <Project/>
+            <Project/>
+            <Project/>
         </div>
       </section>
     </>

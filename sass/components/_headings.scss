@@ -18,6 +18,7 @@
         background-color: orangered;
         position: absolute;
         transition: width .5s;
+        border-radius: 1rem;
         transform: translateX(-50%);
     }
     &::before{
@@ -27,6 +28,7 @@
         height: .5rem;
         bottom: -.5rem;
         left: 50%;
+        border-radius: 1rem;
         background-color: orangered;
         transition: width .5s;
         position: absolute;
@@ -47,4 +49,15 @@
 
 .section2{
     background-color: rgb(255, 250, 238);
+}
+.section3{
+    padding: 8rem 0 2rem 0;
+    margin-top: -20rem;
+    background-color: rgb(255, 242, 221);
+    clip-path: polygon(50% 10%, 100% 0, 100% 100%, 0 100%, 0 0);
+}
+@media(max-width: 71.875em){
+    .section3{
+        clip-path: polygon(50% 5%, 100% 0, 100% 100%, 0 100%, 0 0);
+    }
 }

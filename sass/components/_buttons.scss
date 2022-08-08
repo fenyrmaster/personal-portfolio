@@ -40,10 +40,10 @@
         background-color: rgb(255, 102, 0);
         color: white;
         &::after{
-            transform: scale(10) translateX(-.25rem);
+            transform: scale(15) translateX(-.25rem);
         }
         &::before{
-            transform: scale(10) translateX(.25rem);
+            transform: scale(15) translateX(.25rem);
         }
     }
 }
