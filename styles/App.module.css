@@ -205,7 +205,8 @@
   padding: 8rem 0 2rem 0;
   margin-top: -20rem;
   background-color: #fff2dd;
-  clip-path: polygon(50% 10%, 100% 0, 100% 100%, 0 100%, 0 0); }
+  clip-path: polygon(50% 10%, 100% 0, 100% 100%, 0 100%, 0 0);
+  position: relative; }
 
 @media (max-width: 71.875em) {
   .section3 {
@@ -224,7 +225,8 @@
   width: 28rem;
   background-color: white;
   -webkit-box-shadow: 3px 1px 11px -1px rgba(0, 0, 0, 0.24);
-  box-shadow: 3px 1px 11px -1px rgba(0, 0, 0, 0.24); }
+  box-shadow: 3px 1px 11px -1px rgba(0, 0, 0, 0.24);
+  transition: .4s; }
 
 .techImgContainer {
   background-color: #ffb310;
@@ -277,6 +279,11 @@
   width: 100%;
   border-radius: 50%; }
 
+.project:hover {
+  transform: translateY(-0.8rem);
+  -webkit-box-shadow: 3px 1px 11px -1px rgba(0, 0, 0, 0.4);
+  box-shadow: 5px 8px 13px -1px rgba(0, 0, 0, 0.4); }
+
 .project:hover .techImgContainer::after {
   opacity: 1; }
 
@@ -288,6 +295,11 @@
 
 .project:hover .linkWrapper {
   top: 0; }
+
+.movCanvas {
+  position: absolute;
+  top: 0%;
+  z-index: -5; }
 
 @media (max-width: 103.125em) {
   .projectsContainer {

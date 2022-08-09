@@ -4,7 +4,9 @@ import styles from "../styles/App.module.css"
 import CanvasRodeo from "../sketch/rodeo-amarillo"
 import { Swiper, SwiperSlide } from "swiper/react";
 import Skill from "../components/skill";
+import CanvasMovimientoActivo from "../sketch/movimiento-activo";
 import Project from "../components/project";
+import { useEffect, useRef, useState } from "react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -16,7 +18,22 @@ import { Autoplay, Pagination, FreeMode, Grid } from "swiper";
 
 export default function Home() {
   
-  
+  const [projectsHeight, setProjectHeight] = useState(0);
+  const [projectsWidth, setProjectWidth] = useState(0);
+  const projectRef = useRef(null);
+
+  const updateSize = () => {
+    if(projectRef.current.clientHeight && projectRef.current.clientWidth){
+      console.log("cambiando");
+      setProjectHeight(projectRef.current.clientHeight);
+      setProjectWidth(projectRef.current.clientWidth);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", updateSize);
+    updateSize();
+  }, [])
 
   return (
     <>
@@ -102,7 +119,7 @@ export default function Home() {
         </div>
         </div>
       </section>
-      <section className={styles.section3}>
+      <section ref={projectRef} className={styles.section3}>
         <div className={styles.subtitleWrapper}>
           <h2 className={styles.subtitle}>My Projects</h2>  
         </div>
@@ -117,6 +134,7 @@ export default function Home() {
             <Project/>
             <Project/>
         </div>
+        <CanvasMovimientoActivo width1={projectsWidth} height2={projectsHeight}/>
       </section>
     </>
   )
