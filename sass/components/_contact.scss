@@ -1,0 +1,85 @@
+.contact{
+    &_header{
+        text-align: center;
+        font-size: 2.3rem;
+        margin: -2rem 0 2rem 0;
+        font-family: "Oswald", sans-serif;
+        &:nth-child(1){
+            margin: 2rem 0 2rem 0;
+            font-family: "Ubuntu Condensed", sans-serif;
+        }
+    }
+    &_container{
+        height: 100%;
+        padding: 0 0 3rem 0;
+    }
+    &_form{
+        background-color: rgb(255, 94, 0);
+        width: 70%;
+        margin: 0 auto 4rem auto;
+        padding: .5rem 2rem;
+        &_inputs{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        &_data{
+            flex-basis: 49%;
+            width: 100%;
+        }
+        &_input{
+            font-family: "Ubuntu Condensed", sans-serif;
+            background-color: rgb(255, 255, 255);
+            width: 100%;
+            font-size: 1.4rem;
+            padding: .3rem .5rem;
+            margin: .5rem 0;
+            outline: none;
+            border: none;
+            transition: .15s all;
+            &:focus{
+                outline: rgb(39, 255, 244) .2rem solid;
+            }
+        }
+        &_message{
+            flex-basis: 49%;
+        }
+        &_textarea{
+            padding: .3rem .5rem;
+            height: 9rem;
+            font-family: "Ubuntu Condensed", sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            justify-self: start;
+            align-items: flex-start;
+            width: 100%;
+            resize: none;
+            outline: none;
+            border: none;
+            transition: .15s all;
+            &:focus{
+                outline: rgb(39, 255, 136) .2rem solid;
+            }
+        }
+
+    }
+    @media(max-width: 62.5em){
+        &_form{
+            width: 95%;
+        }
+    }
+    @media(max-width: 46.875em){
+        &_form{
+            margin: .5rem auto .5rem auto;
+        }
+        &_form_inputs{
+            flex-direction: column !important;
+        }
+        &_form_message{
+            width: 100%;
+        }
+        &_header{
+            font-size: 1.8rem;
+        }
+    }
+}

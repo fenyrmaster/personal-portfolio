@@ -29,7 +29,7 @@
         font-family: "Ubuntu Condensed", sans-serif;
         font-weight: 600;
         color: white;
-        font-size: 5rem;
+        font-size: 4.6rem;
         width: 80%;
     }
     &_paragraph{
@@ -43,5 +43,51 @@
     &_span{
         text-transform: uppercase;
         color: rgb(238, 255, 0);
+    }
+    @media(max-width: 96.825em){
+        &_title{
+            font-size: 3.7rem;
+        }
+        &_paragraph{
+            font-size: 1.5rem;
+        }
+    }
+    @media(max-width: 75em){
+        &_container{
+            grid-template-columns: repeat(1, 1fr);
+            background-image: none;
+            height: auto;
+        }
+        &_image{
+            grid-row: 1 / 2;
+        }
+        &_text{
+            display: flex;
+            flex-direction: column;
+            background-image: linear-gradient(102deg, rgb(235, 166, 29) 0%, rgb(243, 132, 21) 45%, rgb(235, 166, 29) 100%);
+            margin: 0;
+            padding: 4rem 2rem;
+            clip-path: polygon(100% 0, 100% 95%, 50% 100%, 0 95%, 0 0, 50% 7%);
+            text-align: center;
+            justify-content: center;
+        }
+        &_title{
+            width: 100%;
+        }
+        &_paragraph{
+            width: 100%;
+        }
+        &_image{
+            margin: 12rem 0 5rem 0;
+            img{
+                width: 10rem;
+                height: 10rem;
+            }
+        }
+    }
+    @media(max-width: 34.375em){
+        &_title{
+            font-size: 2.5rem;
+        }
     }
 }

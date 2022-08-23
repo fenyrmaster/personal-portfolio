@@ -111,7 +111,7 @@ const CanvasMovimientoActivo = ({width1, height2}) => {
               context.beginPath();
           
               context.translate(this.x, this.y);
-              context.rotate((this.x / 10) * Math.PI / 180);
+              context.rotate((this.x / 6) * Math.PI / 180);
               context.translate( -this.x, -this.y );
           
               //context.moveTo(this.x + 25, this.y + 25);

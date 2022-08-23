@@ -64,3 +64,32 @@
 .organizer{
     margin-top: -19rem;
 }
+@media(max-width: 53.125em){
+    .swiperSkills,
+    .swiperSkills2{
+        width: 100%;
+    }
+}
+@media(max-width: 43.75em){
+    .swiperSlide{
+        width: 9rem !important;
+    }
+    .swiperWrapper{
+        height: 40rem;
+    }
+    .swiperImage{
+        width: 1rem;
+    }
+    .skillText{
+        font-size: .8rem;
+    }
+    .skillLevel{
+        font-size: 1.4rem;
+    }
+    .swiperName{
+        font-size: 1.6rem;
+    }
+    .swiperWrapper:nth-child(2){
+        margin-bottom: 4rem;
+    }
+}

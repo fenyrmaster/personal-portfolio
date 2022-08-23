@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Skill from "../components/skill";
 import CanvasMovimientoActivo from "../sketch/movimiento-activo";
 import Project from "../components/project";
+import Navigation from "../components/navigation";
 import { useEffect, useRef, useState } from "react";
 
 // Import Swiper styles
@@ -20,13 +21,18 @@ export default function Home() {
   
   const [projectsHeight, setProjectHeight] = useState(0);
   const [projectsWidth, setProjectWidth] = useState(0);
+  const [shrinkWidth, setShrinkWidth] = useState(false);
   const projectRef = useRef(null);
 
   const updateSize = () => {
     if(projectRef.current.clientHeight && projectRef.current.clientWidth){
-      console.log("cambiando");
       setProjectHeight(projectRef.current.clientHeight);
       setProjectWidth(projectRef.current.clientWidth);
+    }
+    if(projectRef.current.clientWidth <= 1200){
+      setShrinkWidth(true);
+    } else if(projectRef.current.clientWidth > 1200){
+      setShrinkWidth(false);
     }
   }
 
@@ -37,16 +43,18 @@ export default function Home() {
 
   return (
     <>
+      <Navigation/>
       <header className={styles.header_container}>
         <div className={styles.header_text}>
           <h1 className={styles.header_title}>I'm <span className={styles.header_span}>brandon</span> Yahir. </h1>
           <h2 className={styles.header_title}>I develop <span className={styles.header_span}>sites</span> that <span className={styles.header_span}>empower</span> brands.</h2>
           <p className={styles.header_paragraph}>Are you looking for a website to manage your business? Or reach more clients? i got you covered.</p>
           <Link href="/about-me"><a className={styles.btn1}><span className={styles.btnText}>More about me</span></a></Link>
+          <Link href="/cv"><a className={`${styles.btn1} ${styles.btnSep}`}><span className={styles.btnText}>Download CV</span></a></Link>
         </div>
         <div className={styles.header_image}>
-          <img src="/images/default.jpg" width={300} height={300}/>
-          <CanvasRodeo/>
+          <img src="/images/default.jpg"/>
+          <CanvasRodeo shrink={shrinkWidth}/>
         </div>
       </header>
       <section className={styles.section2}>
@@ -134,7 +142,32 @@ export default function Home() {
             <Project/>
             <Project/>
         </div>
+        <Link href="/about-me"><a className={`${styles.btn1} ${styles.customChange1}`}><span className={styles.btnText}>More Projects</span></a></Link>
         <CanvasMovimientoActivo width1={projectsWidth} height2={projectsHeight}/>
+      </section>
+      <section id="contact-form" className={styles.section4}>
+        <div className={styles.contact_container}>
+          <div className={styles.subtitleWrapper}>
+          <h2 className={styles.subtitle}>Contact me</h2>  
+          </div>   
+          <h3 className={styles.contact_header}>Are you interested in a project and you dont know how to start?</h3>
+          <form className={styles.contact_form}>
+          <h3 className={styles.contact_header}>Lets talk</h3>
+            <div className={styles.contact_form_inputs}>
+              <div className={styles.contact_form_data}>
+                <input className={styles.contact_form_input} placeholder="I'd like to talk about..." type={"text"}/>
+                <div className={styles.contact_dual}>
+                  <input className={styles.contact_form_input} placeholder="Name..."/>
+                  <input className={styles.contact_form_input} placeholder="Email..."/>
+                </div>
+              </div>
+              <div className={styles.contact_form_message}>
+                <textarea className={styles.contact_form_textarea} placeholder="Message"></textarea>
+              </div>
+            </div>
+            <button className={styles.btn_form} type="submit">Send Message</button>
+          </form>
+        </div>
       </section>
     </>
   )

@@ -3,14 +3,14 @@ import random from 'canvas-sketch-util/random';
 import { useEffect } from 'react';
 import * as React from "react";
 
-const CanvasRodeo = () => {
+const CanvasRodeo = ({ shrink }) => {
 
     const canvasRef = React.useRef(null);
 
     useEffect(() => {
         let context = canvasRef.current.getContext("2d");
-        let width = 600;
-        let height = 600;
+        let width = shrink ? 300 : 600;
+        let height = shrink ? 300 : 600;
         
         const circulos = [];
 
@@ -68,8 +68,8 @@ const CanvasRodeo = () => {
         const cy = height * 0.5;
         const w = width * 0.04;
         
-        const num = 13;
-        const radius = width * .5;
+        const num = shrink ? 9 : 13;
+        const radius = width * (shrink ? .7 : .5);
         
         for(let i = 0; i < num; i++){
           
@@ -93,10 +93,10 @@ const CanvasRodeo = () => {
 
         }
           animate();
-    }, []);
+    }, [shrink]);
 
     return(
-        <canvas width="600" height="600" ref={canvasRef}></canvas>
+        <canvas width={ shrink ? "300" : "600" } height={ shrink ? "300" : "600" } ref={canvasRef}></canvas>
     )
 }
 

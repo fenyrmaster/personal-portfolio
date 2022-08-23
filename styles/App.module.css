@@ -27,7 +27,7 @@
   font-family: "Ubuntu Condensed", sans-serif;
   font-weight: 600;
   color: white;
-  font-size: 5rem;
+  font-size: 4.6rem;
   width: 80%; }
 
 .header_paragraph {
@@ -41,6 +41,42 @@
 .header_span {
   text-transform: uppercase;
   color: #eeff00; }
+
+@media (max-width: 96.825em) {
+  .header_title {
+    font-size: 3.7rem; }
+  .header_paragraph {
+    font-size: 1.5rem; } }
+
+@media (max-width: 75em) {
+  .header_container {
+    grid-template-columns: repeat(1, 1fr);
+    background-image: none;
+    height: auto; }
+  .header_image {
+    grid-row: 1 / 2; }
+  .header_text {
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(102deg, #eba61d 0%, #f38415 45%, #eba61d 100%);
+    margin: 0;
+    padding: 4rem 2rem;
+    clip-path: polygon(100% 0, 100% 95%, 50% 100%, 0 95%, 0 0, 50% 7%);
+    text-align: center;
+    justify-content: center; }
+  .header_title {
+    width: 100%; }
+  .header_paragraph {
+    width: 100%; }
+  .header_image {
+    margin: 12rem 0 5rem 0; }
+    .header_image img {
+      width: 10rem;
+      height: 10rem; } }
+
+@media (max-width: 34.375em) {
+  .header_title {
+    font-size: 2.5rem; } }
 
 .btn1 {
   position: relative;
@@ -89,6 +125,68 @@
 .btnText {
   position: relative;
   z-index: 5; }
+
+.btnSep {
+  margin: 0 !important; }
+
+.customChange1 {
+  display: flex;
+  width: max-content;
+  margin: 0 auto 1rem auto; }
+
+.btn_form {
+  width: 100%;
+  text-align: center;
+  padding: .5rem 1rem;
+  font-size: 2rem;
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-weight: 800;
+  margin: 1rem 0;
+  color: black;
+  background-color: white;
+  transition: .3s;
+  border: 0.15rem solid #ffd000; }
+  .btn_form:hover {
+    background-color: #ffc400;
+    color: white; }
+
+.navButtons {
+  position: relative;
+  margin: 0 1rem;
+  padding: .5rem 1rem;
+  transition: .4s; }
+  .navButtons:nth-child(5) {
+    border: 0.2rem solid #ff6600;
+    background-color: white; }
+    .navButtons:nth-child(5):hover {
+      background-color: #ffd000; }
+      .navButtons:nth-child(5):hover .btnTextNav {
+        background-color: white; }
+
+.btnTextNav {
+  color: transparent;
+  font-weight: 500;
+  background-color: black;
+  background-clip: text;
+  font-size: 1.1rem;
+  font-family: "Oswald", sans-serif;
+  transition: .2s; }
+  .btnTextNav:hover {
+    background-clip: text;
+    background-color: #ff9100; }
+
+@media (max-width: 75em) {
+  .btn1 {
+    align-self: center; } }
+
+@media (max-width: 43.75em) {
+  .navButtons {
+    margin: 0 0;
+    padding: .5rem .5rem; }
+  .btnTextNav {
+    font-size: .9rem; }
+  .btn_form {
+    font-size: 1.7rem; } }
 
 .swiperSkills {
   width: 80%;
@@ -156,6 +254,27 @@
 .organizer {
   margin-top: -19rem; }
 
+@media (max-width: 53.125em) {
+  .swiperSkills,
+  .swiperSkills2 {
+    width: 100%; } }
+
+@media (max-width: 43.75em) {
+  .swiperSlide {
+    width: 9rem !important; }
+  .swiperWrapper {
+    height: 40rem; }
+  .swiperImage {
+    width: 1rem; }
+  .skillText {
+    font-size: .8rem; }
+  .skillLevel {
+    font-size: 1.4rem; }
+  .swiperName {
+    font-size: 1.6rem; }
+  .swiperWrapper:nth-child(2) {
+    margin-bottom: 4rem; } }
+
 .subtitle {
   position: relative;
   font-size: 3rem;
@@ -208,9 +327,21 @@
   clip-path: polygon(50% 10%, 100% 0, 100% 100%, 0 100%, 0 0);
   position: relative; }
 
+.section4 {
+  background-color: #fdad00;
+  color: white; }
+
+@media (max-width: 75em) {
+  .section2 {
+    margin-top: -2rem; } }
+
 @media (max-width: 71.875em) {
   .section3 {
     clip-path: polygon(50% 5%, 100% 0, 100% 100%, 0 100%, 0 0); } }
+
+@media (max-width: 37.5em) {
+  .subtitle {
+    font-size: 2.5rem; } }
 
 .projectsContainer {
   margin: 0 6rem 6rem 6rem;
@@ -314,3 +445,103 @@
 @media (max-width: 31.25em) {
   .project {
     width: 100%; } }
+
+@media (max-width: 25em) {
+  .project:hover .linkWrapper {
+    top: -10%; } }
+
+.contact_header {
+  text-align: center;
+  font-size: 2.3rem;
+  margin: -2rem 0 2rem 0;
+  font-family: "Oswald", sans-serif; }
+  .contact_header:nth-child(1) {
+    margin: 2rem 0 2rem 0;
+    font-family: "Ubuntu Condensed", sans-serif; }
+
+.contact_container {
+  height: 100%;
+  padding: 0 0 3rem 0; }
+
+.contact_form {
+  background-color: #ff5e00;
+  width: 70%;
+  margin: 0 auto 4rem auto;
+  padding: .5rem 2rem; }
+  .contact_form_inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+  .contact_form_data {
+    flex-basis: 49%;
+    width: 100%; }
+  .contact_form_input {
+    font-family: "Ubuntu Condensed", sans-serif;
+    background-color: white;
+    width: 100%;
+    font-size: 1.4rem;
+    padding: .3rem .5rem;
+    margin: .5rem 0;
+    outline: none;
+    border: none;
+    transition: .15s all; }
+    .contact_form_input:focus {
+      outline: #27fff4 0.2rem solid; }
+  .contact_form_message {
+    flex-basis: 49%; }
+  .contact_form_textarea {
+    padding: .3rem .5rem;
+    height: 9rem;
+    font-family: "Ubuntu Condensed", sans-serif;
+    font-size: 1.4rem;
+    display: flex;
+    justify-self: start;
+    align-items: flex-start;
+    width: 100%;
+    resize: none;
+    outline: none;
+    border: none;
+    transition: .15s all; }
+    .contact_form_textarea:focus {
+      outline: #27ff88 0.2rem solid; }
+
+@media (max-width: 62.5em) {
+  .contact_form {
+    width: 95%; } }
+
+@media (max-width: 46.875em) {
+  .contact_form {
+    margin: .5rem auto .5rem auto; }
+  .contact_form_inputs {
+    flex-direction: column !important; }
+  .contact_form_message {
+    width: 100%; }
+  .contact_header {
+    font-size: 1.8rem; } }
+
+.nav_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff1d7;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  border-bottom: 0.1rem solid #f85b00; }
+
+.nav_name {
+  font-size: 2rem;
+  margin: .5rem 0 .5rem 1.5rem;
+  font-family: "Ubuntu Condensed", sans-serif;
+  text-transform: uppercase; }
+
+@media (max-width: 50em) {
+  .nav_container {
+    padding: 1rem;
+    justify-content: center;
+    width: 100%; }
+  .nav_name {
+    display: none; }
+  .nav_navigation {
+    display: flex;
+    flex-wrap: wrap; } }
