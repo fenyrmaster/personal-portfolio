@@ -2,10 +2,10 @@ import styles from "../styles/App.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-const Project = () => {
+const Project = ({ tipo }) => {
     return(
         <div className={styles.project}>
-            <div className={styles.techImgContainer}>
+            <div className={`${styles.techImgContainer} ${tipo ? styles.bckgOrange : styles.bckgYellow}`}>
                 <img className={styles.techImg} src="/images/Screenshot_9.png"/>
             </div>
             <div className={styles.linkWrapper}>

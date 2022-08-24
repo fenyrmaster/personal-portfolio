@@ -4,9 +4,8 @@ import styles from "../styles/App.module.css"
 import CanvasRodeo from "../sketch/rodeo-amarillo"
 import { Swiper, SwiperSlide } from "swiper/react";
 import Skill from "../components/skill";
-import CanvasMovimientoActivo from "../sketch/movimiento-activo";
-import Project from "../components/project";
 import Navigation from "../components/navigation";
+import Projects from "../components/projects";
 import { useEffect, useRef, useState } from "react";
 
 // Import Swiper styles
@@ -39,7 +38,7 @@ export default function Home() {
   useEffect(() => {
     window.addEventListener("resize", updateSize);
     updateSize();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -131,19 +130,7 @@ export default function Home() {
         <div className={styles.subtitleWrapper}>
           <h2 className={styles.subtitle}>My Projects</h2>  
         </div>
-        <div className={styles.projectsContainer}>
-            <Project/>
-            <Project/>
-            <Project/>
-            <Project/>
-            <Project/>
-            <Project/>
-            <Project/>
-            <Project/>
-            <Project/>
-        </div>
-        <Link href="/about-me"><a className={`${styles.btn1} ${styles.customChange1}`}><span className={styles.btnText}>More Projects</span></a></Link>
-        <CanvasMovimientoActivo width1={projectsWidth} height2={projectsHeight}/>
+        <Projects projectsHeight={projectsHeight} projectsWidth={projectsWidth}/>
       </section>
       <section id="contact-form" className={styles.section4}>
         <div className={styles.contact_container}>

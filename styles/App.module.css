@@ -132,7 +132,7 @@
 .customChange1 {
   display: flex;
   width: max-content;
-  margin: 0 auto 1rem auto; }
+  margin: 0 auto 2rem auto; }
 
 .btn_form {
   width: 100%;
@@ -331,6 +331,10 @@
   background-color: #fdad00;
   color: white; }
 
+.subtitleCustom2 {
+  padding-bottom: .5rem;
+  padding-top: 7rem; }
+
 @media (max-width: 75em) {
   .section2 {
     margin-top: -2rem; } }
@@ -341,7 +345,7 @@
 
 @media (max-width: 37.5em) {
   .subtitle {
-    font-size: 2.5rem; } }
+    font-size: 2.3rem; } }
 
 .projectsContainer {
   margin: 0 6rem 6rem 6rem;
@@ -360,7 +364,6 @@
   transition: .4s; }
 
 .techImgContainer {
-  background-color: #ffb310;
   padding: .2rem; }
   .techImgContainer::after {
     content: "";
@@ -372,6 +375,16 @@
     left: 0;
     opacity: 0;
     transition: .5s; }
+
+.bckgOrange {
+  background-color: #ffb310; }
+  .bckgOrange::after {
+    background-color: #ffb310; }
+
+.bckgYellow {
+  background-color: #fedf00; }
+  .bckgYellow::after {
+    background-color: #fedf00; }
 
 .tecnologies {
   text-align: center;
@@ -431,6 +444,16 @@
   position: absolute;
   top: 0%;
   z-index: -5; }
+
+.allProjects {
+  height: 100%;
+  padding-bottom: 2rem; }
+
+.projectForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 4rem 0; }
 
 @media (max-width: 103.125em) {
   .projectsContainer {

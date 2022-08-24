@@ -16,7 +16,6 @@
 }
 
 .techImgContainer{
-    background-color: rgb(255, 179, 16);
     padding: .2rem;
     &::after{
         content: "";
@@ -28,6 +27,18 @@
         left: 0;
         opacity: 0;
         transition: .5s;
+    }
+}
+.bckgOrange{
+    background-color: rgb(255, 179, 16);
+    &::after{
+        background-color: rgb(255, 179, 16);
+    }
+}
+.bckgYellow{
+    background-color: rgb(254, 223, 0);
+    &::after{
+        background-color: rgb(254, 223, 0);
     }
 }
 .tecnologies{
@@ -89,6 +100,16 @@
     position: absolute;
     top: 0%;
     z-index: -5;
+}
+.allProjects{
+    height: 100%;
+    padding-bottom: 2rem;
+}
+.projectForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 4rem 0;
 }
 @media(max-width: 103.125em){
     .projectsContainer{
