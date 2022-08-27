@@ -9,7 +9,7 @@ const Project = ({ tipo }) => {
                 <img className={styles.techImg} src="/images/Screenshot_9.png"/>
             </div>
             <div className={styles.linkWrapper}>
-                <Link href="/about-me"><a className={styles.btn1}><span className={styles.btnText}>More project details</span></a></Link>
+                <Link href={`/project/1234`}><a className={styles.btn1}><span className={styles.btnText}>More project details</span></a></Link>
             </div>
             <h4 className={styles.tecnologies}>Tecnologies used:</h4>
             <div className={styles.tech}>
