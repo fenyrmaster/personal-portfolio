@@ -570,12 +570,14 @@
     flex-wrap: wrap; } }
 
 .projectDetails {
-  height: 50rem;
+  height: 100vh;
   position: relative;
   perspective: .1rem;
   transform-style: preserve-3d;
   overflow-x: hidden;
-  overflow-y: auto; }
+  overflow-y: auto;
+  -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
+  clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0); }
   .projectDetails::before {
     content: "";
     position: absolute;
@@ -583,11 +585,45 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right bottom, rgba(140, 140, 140, 0.5), rgba(140, 140, 140, 0.5)), url("../public/images/Screenshot_9.png");
+    background: linear-gradient(to right bottom, rgba(255, 80, 27, 0.807), rgba(255, 136, 0, 0.774)), url("../public/images/Screenshot_9.png");
     background-position: center center;
     background-size: cover;
     object-fit: cover;
     transform: translateZ(-0.1rem) scale(2); }
 
+.project_title {
+  font-size: 3.4rem;
+  margin: 1rem 0;
+  text-transform: uppercase;
+  font-family: "Ubuntu Condensed", sans-serif;
+  text-align: center; }
+
+.project_extras {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 0 1rem 0; }
+  .project_extras_paragraph {
+    font-family: "Oswald", sans-serif;
+    font-size: 1.3rem;
+    margin: 0 .5rem; }
+
+.project_text {
+  display: flex;
+  flex-basis: 50%;
+  width: 100%;
+  align-items: center;
+  justify-content: center; }
+
 .all {
   height: 100vh; }
+
+@media (max-width: 34.375em) {
+  .project_title {
+    font-size: 2.3rem; }
+  .project_extras_paragraph {
+    font-size: 1rem; }
+  .projectDetails {
+    -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 0 90%, 0 0);
+    clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 0 90%, 0 0); } }
