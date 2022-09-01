@@ -62,6 +62,15 @@
 .customChange2{
     width: max-content;
 }
+@media(max-width: 68.75em){
+    .customChange2{
+        margin: 2rem auto;
+    }
+}
+.content{
+    position: relative;
+    z-index: 999;
+}
 
 .btn_form{
     width: 100%;
