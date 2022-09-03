@@ -4,12 +4,11 @@ import styles from "../styles/App.module.css";
 export default function Layout({children}){
 
     return(
-        <>
+        <section className={styles.mainBck}>
             <ParticlesAdmin/>
             <div className={styles.content}>
-                <h1>This is a hello</h1>
                 <main>{children}</main>
             </div>
-        </>
+        </section>
     );
 }

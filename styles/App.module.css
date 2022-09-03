@@ -709,3 +709,21 @@
   .projectDetails {
     -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 0 90%, 0 0);
     clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 0 90%, 0 0); } }
+
+.content {
+  position: absolute;
+  width: 70rem;
+  background-color: red;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 75%; }
+
+.mainBck {
+  background: #ffda00;
+  background: linear-gradient(90deg, #ffda00 0%, #ff9100 52%, #ff6600 100%);
+  width: 100vw;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  overflow: hidden; }

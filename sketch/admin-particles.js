@@ -21,11 +21,6 @@ const ParticlesAdmin = () => {
           init={particlesInit}
           loaded={particlesLoaded}
           options={{
-            background: {
-              color: {
-                value: "#FB790D",
-              },
-            },
             fpsLimit: 120,
             interactivity: {
               events: {
