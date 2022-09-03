@@ -186,6 +186,14 @@
     background-clip: text;
     background-color: #ff9100; }
 
+.btnAdminNav {
+  padding: 1rem 1rem;
+  width: 100%;
+  margin: .5rem 0; }
+
+.btnAdminNav:nth-child(1) {
+  margin-top: 1rem; }
+
 @media (max-width: 75em) {
   .btn1 {
     align-self: center; } }
@@ -713,11 +721,28 @@
 .content {
   position: absolute;
   width: 70rem;
-  background-color: red;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 75%; }
+  height: 75%;
+  display: flex;
+  box-shadow: -1px 0px 23px 5px rgba(255, 169, 0, 0.75);
+  -webkit-box-shadow: -1px 0px 23px 5px rgba(255, 169, 0, 0.75);
+  -moz-box-shadow: -1px 0px 23px 5px rgba(255, 169, 0, 0.75);
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem; }
+
+.adminNav {
+  flex-basis: 25%;
+  display: flex;
+  flex-direction: column;
+  background-color: #4c4947;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem; }
+
+.childContent {
+  background-color: rgba(255, 255, 255, 0.693);
+  width: 100%; }
 
 .mainBck {
   background: #ffda00;
