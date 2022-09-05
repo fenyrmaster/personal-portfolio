@@ -1,19 +1,26 @@
 import ParticlesAdmin from "../sketch/admin-particles";
 import styles from "../styles/App.module.css";
 import Link from "next/dist/client/link";
+import { useEffect, useState } from "react";
 
 export default function Layout({children}){
+
+    const [ url, setUrl ] = useState("");
+    useEffect(() => {
+        let current = window.location.pathname.split("/")[2];
+        setUrl(current);
+    }, []);
 
     return(
         <section className={styles.mainBck}>
             <ParticlesAdmin/>
             <div className={styles.content}>
                 <nav className={styles.adminNav}>
-                    <div className={"navContainer"}>
+                    <div className={`navContainer ${url === "blog" && "selected"}`}>
                         <ion-icon name="golf-sharp"></ion-icon>
                         <Link href="/blog"><a className={styles.btnAdminNav}><span className={styles.adminNavText}>Blog</span></a></Link>
                     </div>
-                    <div className={"navContainer"}>
+                    <div className={`navContainer ${url === "skills" && "selected"}`}>
                         <ion-icon name="code-slash-sharp"></ion-icon>
                         <Link href="/blog"><a className={styles.btnAdminNav}><span className={styles.adminNavText}>Skills</span></a></Link>
                     </div>
