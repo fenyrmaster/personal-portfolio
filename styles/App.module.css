@@ -794,14 +794,15 @@
 
 .skillsAdmin {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); }
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center; }
 
 .skillEdit,
 .skillDelete {
   outline: none;
   border: .05rem solid grey;
   width: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: .3rem 1rem;
   text-transform: uppercase;
   font-family: "Ubuntu Condensed", sans-serif;
@@ -826,6 +827,59 @@
     background-color: red;
     color: white; }
 
+.newSkillForm {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem; }
+  .newSkillForm_field {
+    font-family: "Ubuntu", sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: .6rem 0; }
+  .newSkillForm_label {
+    font-size: 1.4rem;
+    color: #353535; }
+  .newSkillForm_input {
+    background-color: white;
+    border: orange solid .1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: .3rem .5rem;
+    margin-top: .3rem; }
+  .newSkillForm_file {
+    border: orange solid .1rem;
+    background-color: white;
+    margin-top: .3rem; }
+    .newSkillForm_file::-webkit-file-upload-button {
+      visibility: hidden; }
+    .newSkillForm_file::before {
+      content: 'Select a file';
+      display: inline-block;
+      background: #ff4b14;
+      padding: .6rem .4rem;
+      outline: none;
+      white-space: nowrap;
+      color: white;
+      -webkit-user-select: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem; }
+    .newSkillForm_file:hover::before {
+      border-color: white; }
+    .newSkillForm_file:active::before {
+      background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); }
+
+.newSkillTitle {
+  margin: 1rem;
+  font-size: 2.5rem;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  color: #353535; }
+
+.newSkillBtns {
+  display: flex;
+  justify-content: space-between; }
+
 /* End of separate code */
 @media (max-width: 71.875em) {
   .content {
@@ -839,6 +893,22 @@
     border-radius: 0; }
   .childContent {
     height: 100%; } }
+
+@media (max-width: 56.25em) {
+  .skillsAdmin {
+    grid-template-columns: repeat(3, 1fr); } }
+
+@media (max-width: 42.1875em) {
+  .skillsAdmin {
+    grid-template-columns: repeat(2, 1fr); } }
+
+@media (max-width: 28.125em) {
+  .skillsAdmin {
+    grid-template-columns: repeat(1, 1fr); } }
+
+@media (max-width: 31.25em) {
+  .newSkillBtns {
+    flex-direction: column; } }
 
 @media (max-width: 37.5em) {
   .adminNav {
