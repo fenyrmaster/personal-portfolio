@@ -29,6 +29,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-particles": "^2.2.4",
+    "sweetalert2": "^11.4.32",
     "swiper": "^8.3.2",
     "tsparticles": "^2.2.4",
     "tsparticles-engine": "^2.2.4"

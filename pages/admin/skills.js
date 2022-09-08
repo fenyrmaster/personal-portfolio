@@ -2,16 +2,60 @@ import Layout from "../../components/adminLayout";
 import styles from "../../styles/App.module.css";
 import Link from "next/dist/client/link";
 import SkillAdmin from "../../components/skillAdmin";
-import { useState } from "react";
+import Swal from "sweetalert2";
+import { useState, useEffect } from "react";
 
 export default function Skills(){
 
     const [ newSkill, setNewSkill ] = useState(false);
+    const [ deleteSkill, setDeleteSkill ] = useState(false);
+    const [ skillLevel, setSkillLevel ] = useState(false);
 
     const createNewSkill = e => {
         e.preventDefault();
         console.log("creando...");
     } 
+    useEffect(() => {
+        if(deleteSkill){
+            Swal.fire({
+                title: 'Alert',
+                text: "¿Are you sure do you want to delete React?",
+                icon: "question",
+                confirmButtonColor: '#ffcc00',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: "No",
+                cancelButtonColor: "#ff0000"
+              }).then((result) => {
+                if(result.isDismissed){
+                    setDeleteSkill(false);
+                }
+              })
+        }
+    }, [deleteSkill]);
+
+    useEffect(() => {
+        if(skillLevel){
+            Swal.fire({
+                title: "Enter the new skill level",
+                input: "select",
+                inputOptions: {
+                    "Beginer": "Beginner",
+                    "Intermediate": "Intermediate",
+                    "Advanced": "Advanced"
+                },
+                confirmButtonText: "Edit",
+                confirmButtonColor: '#ffcc00',
+                showCancelButton: true,
+                cancelButtonText: "Cancel",
+                cancelButtonColor: "#ff0000"
+            }).then(result => {
+                if(result.isDismissed){
+                    setSkillLevel(false);
+                }
+            });
+        }
+    }, [skillLevel]);
 
     return(
         <Layout>
@@ -20,13 +64,13 @@ export default function Skills(){
                     <button onClick={() => setNewSkill(true)} className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>Add new skills</span></button>
                 </div>
                 <section className={styles.skillsAdmin}>
-                    <SkillAdmin/>
-                    <SkillAdmin/>
-                    <SkillAdmin/>
-                    <SkillAdmin/>
-                    <SkillAdmin/>
-                    <SkillAdmin/>
-                    <SkillAdmin/>
+                    <SkillAdmin deleteFn={setDeleteSkill} editSkillFn={setSkillLevel}/>
+                    <SkillAdmin deleteFn={setDeleteSkill} editSkillFn={setSkillLevel}/>
+                    <SkillAdmin deleteFn={setDeleteSkill} editSkillFn={setSkillLevel}/>
+                    <SkillAdmin deleteFn={setDeleteSkill} editSkillFn={setSkillLevel}/>
+                    <SkillAdmin deleteFn={setDeleteSkill} editSkillFn={setSkillLevel}/>
+                    <SkillAdmin deleteFn={setDeleteSkill} editSkillFn={setSkillLevel}/>
+                    <SkillAdmin deleteFn={setDeleteSkill} editSkillFn={setSkillLevel}/>
                 </section></>
             :   <>
                 <h2 className={styles.newSkillTitle}>Create a new skill</h2>

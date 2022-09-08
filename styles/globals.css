@@ -64,3 +64,6 @@ ion-icon{
 .navContainer:nth-child(1){
   margin-top: 1rem;
 }
+.swal2-container {
+  font-family: "Ubuntu", sans-serif;
+}
