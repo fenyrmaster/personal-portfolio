@@ -22,11 +22,11 @@ export default function Layout({children}){
                     </div>
                     <div className={`navContainer ${url === "skills" && "selected"}`}>
                         <ion-icon name="code-slash-sharp"></ion-icon>
-                        <Link href="/blog"><a className={styles.btnAdminNav}><span className={styles.adminNavText}>Skills</span></a></Link>
+                        <Link href="/admin/skills"><a className={styles.btnAdminNav}><span className={styles.adminNavText}>Skills</span></a></Link>
                     </div>
-                    <div className={"navContainer"}>
+                    <div className={`navContainer ${url === "projects" && "selected"}`}>
                         <ion-icon name="reader-sharp"></ion-icon>
-                        <Link href="/blog"><a className={styles.btnAdminNav}><span className={styles.adminNavText}>Projects</span></a></Link>
+                        <Link href="/admin/projects"><a className={styles.btnAdminNav}><span className={styles.adminNavText}>Projects</span></a></Link>
                     </div>
                     <div className={"navContainer"}>
                         <ion-icon name="trophy-sharp"></ion-icon>

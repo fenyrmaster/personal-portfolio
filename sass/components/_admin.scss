@@ -78,7 +78,8 @@
     place-items: center;
 }
 .skillEdit,
-.skillDelete{
+.skillDelete,
+.projectView{
     outline: none;
     border: .05rem solid grey;
     width: 100%;
@@ -106,6 +107,15 @@
     transition: .3s;
     &:hover{
         background-color: rgb(255, 0, 0);
+        color: white;
+    }
+}
+.projectView{
+    border-color: rgb(255, 0, 119);
+    background-color: rgba(255, 0, 212, 0.096);
+    transition: .3s;
+    &:hover{
+        background-color: rgb(255, 0, 149);
         color: white;
     }
 }
@@ -170,6 +180,49 @@
     display: flex;
     justify-content: space-between;
 }
+/* End Of Skill Part */
+
+/* Projects part */
+.adminProjectContainer{
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+}
+.adminProject{
+    &_title{
+        background-color: rgb(255, 196, 0);
+        margin: 0;
+        border-bottom: rgb(255, 0, 0) .1rem solid;
+        font-family: "Oswald", sans-serif;
+        padding: .2rem .5rem;
+    }
+    &_Main{
+        background-color: rgb(255, 102, 0);
+        display: flex;
+        justify-content: space-between;
+        padding: .1rem 0 .2rem .2rem;
+    }
+    &_Technologies{
+        margin: .3rem;
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+    &_techImg{
+        padding: .05rem !important;
+    }
+    &_Buttons{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        background-color: white;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    }
+}
+/* End Of Project part */
 
 /* End of separate code */
 @media(max-width: 71.875em){
@@ -192,6 +245,12 @@
     .skillsAdmin{
         grid-template-columns: repeat(3, 1fr);
     }
+    .adminProject{
+        &_Main{
+            flex-direction: column;
+            padding: .1rem .2rem;
+        }
+    }
 }
 @media(max-width: 42.1875em){
     .skillsAdmin{
@@ -206,6 +265,9 @@
 @media(max-width: 31.25em){
     .newSkillBtns{
         flex-direction: column;
+    }
+    .adminProjectContainer{
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 @media(max-width: 37.5em){

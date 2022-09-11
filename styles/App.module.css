@@ -798,7 +798,8 @@
   place-items: center; }
 
 .skillEdit,
-.skillDelete {
+.skillDelete,
+.projectView {
   outline: none;
   border: .05rem solid grey;
   width: 100%;
@@ -825,6 +826,14 @@
   transition: .3s; }
   .skillDelete:hover {
     background-color: red;
+    color: white; }
+
+.projectView {
+  border-color: #ff0077;
+  background-color: rgba(255, 0, 212, 0.096);
+  transition: .3s; }
+  .projectView:hover {
+    background-color: #ff0095;
     color: white; }
 
 .newSkillForm {
@@ -880,6 +889,46 @@
   display: flex;
   justify-content: space-between; }
 
+/* End Of Skill Part */
+/* Projects part */
+.adminProjectContainer {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem; }
+
+.adminProject_title {
+  background-color: #ffc400;
+  margin: 0;
+  border-bottom: red 0.1rem solid;
+  font-family: "Oswald", sans-serif;
+  padding: .2rem .5rem; }
+
+.adminProject_Main {
+  background-color: #ff6600;
+  display: flex;
+  justify-content: space-between;
+  padding: .1rem 0 .2rem .2rem; }
+
+.adminProject_Technologies {
+  margin: .3rem;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; }
+
+.adminProject_techImg {
+  padding: .05rem !important; }
+
+.adminProject_Buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  background-color: white;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem; }
+
+/* End Of Project part */
 /* End of separate code */
 @media (max-width: 71.875em) {
   .content {
@@ -896,7 +945,10 @@
 
 @media (max-width: 56.25em) {
   .skillsAdmin {
-    grid-template-columns: repeat(3, 1fr); } }
+    grid-template-columns: repeat(3, 1fr); }
+  .adminProject_Main {
+    flex-direction: column;
+    padding: .1rem .2rem; } }
 
 @media (max-width: 42.1875em) {
   .skillsAdmin {
@@ -908,7 +960,9 @@
 
 @media (max-width: 31.25em) {
   .newSkillBtns {
-    flex-direction: column; } }
+    flex-direction: column; }
+  .adminProjectContainer {
+    grid-template-columns: repeat(1, 1fr); } }
 
 @media (max-width: 37.5em) {
   .adminNav {
