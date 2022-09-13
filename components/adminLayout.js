@@ -13,7 +13,7 @@ export default function Layout({children}){
 
     return(
         <section className={styles.mainBck}>
-            <ParticlesAdmin/>
+
             <div className={styles.content}>
                 <nav className={styles.adminNav}>
                     <div className={`navContainer ${url === "blog" && "selected"}`}>
