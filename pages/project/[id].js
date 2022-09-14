@@ -32,7 +32,6 @@ export default function ProjectsAll(){
     }
     const dataFixed = () => {
         let offset = floaterRef.current.clientHeight - 180;
-        console.log(offset, window.pageYOffset);
         if(window.pageYOffset > offset){
             setFloaterAppear(true);
         } else if(window.pageYOffset < offset){

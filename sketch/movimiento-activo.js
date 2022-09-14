@@ -11,7 +11,6 @@ const CanvasMovimientoActivo = ({width1, height2}) => {
         let context = canvasRef2.current.getContext("2d");
         let width = width1;
         let height = height2;
-        console.log(width);
 
         class Point {
             constructor(x, y){

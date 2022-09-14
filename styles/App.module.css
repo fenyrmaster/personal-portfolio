@@ -855,6 +855,8 @@
     font-weight: 600;
     padding: .3rem .5rem;
     margin-top: .3rem; }
+    .newSkillForm_input:focus {
+      outline: 0.1rem solid #ff1e00; }
   .newSkillForm_file {
     border: orange solid .1rem;
     background-color: white;
@@ -927,6 +929,12 @@
   background-color: white;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem; }
+
+.customField {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  flex-direction: row; }
 
 /* End Of Project part */
 /* End of separate code */
