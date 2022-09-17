@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import Image from "next/dist/client/image";
 import Navigation from "../../components/navigation";
 import Link from "next/dist/client/link";
+import AnimationController from "../../components/animationController";
 
 export default function ProjectsAll(){
 

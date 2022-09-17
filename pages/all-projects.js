@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import styles from "../styles/App.module.css";
 import Navigation from "../components/navigation";
+import AnimationController from "../components/animationController";
 
 export default function ProjectsAll(){
 
@@ -48,6 +49,7 @@ export default function ProjectsAll(){
     return(
         <>
             <Navigation/>
+            <AnimationController/>
             <section className={styles.allProjects} ref={projectRef}>
                 <div className={`${styles.subtitleWrapper} ${styles.subtitleCustom2}`}>
                   <h2 className={styles.subtitle}>All my projects</h2>  

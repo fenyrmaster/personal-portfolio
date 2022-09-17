@@ -83,6 +83,7 @@
   font-family: "Oswald", sans-serif;
   text-transform: uppercase;
   background-color: white;
+  cursor: pointer;
   border: 0.1rem solid #ff6600;
   border-radius: 2rem;
   display: block;
@@ -123,6 +124,7 @@
       transform: scale(15) translateX(0.25rem); }
 
 .btnText {
+  cursor: pointer;
   position: relative;
   z-index: 5; }
 
@@ -147,6 +149,7 @@
 
 .btn_form {
   width: 100%;
+  cursor: pointer;
   text-align: center;
   padding: .5rem 1rem;
   font-size: 2rem;
@@ -464,6 +467,9 @@
   z-index: -5; }
 
 .allProjects {
+  background-color: #fff2dd;
+  z-index: 1;
+  position: relative;
   height: 100%;
   padding-bottom: 2rem; }
 
@@ -764,7 +770,8 @@
 /* Skills part */
 .adminBtn {
   width: max-content;
-  margin: 1rem 0; }
+  margin: 1rem 0;
+  cursor: pointer; }
 
 .skillAdd {
   display: flex;
@@ -889,6 +896,7 @@
 
 .newSkillBtns {
   display: flex;
+  cursor: pointer;
   justify-content: space-between; }
 
 /* End Of Skill Part */

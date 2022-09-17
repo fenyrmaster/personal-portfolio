@@ -4,6 +4,7 @@ import styles from "../styles/App.module.css"
 import CanvasRodeo from "../sketch/rodeo-amarillo"
 import { Swiper, SwiperSlide } from "swiper/react";
 import Skill from "../components/skill";
+import AnimationController from "../components/animationController";
 import Navigation from "../components/navigation";
 import Projects from "../components/projects";
 import { useEffect, useRef, useState } from "react";
@@ -43,6 +44,7 @@ export default function Home() {
   return (
     <>
       <Navigation/>
+      <AnimationController/>
       <header className={styles.header_container}>
         <div className={styles.header_text}>
           <h1 className={styles.header_title}>I'm <span className={styles.header_span}>brandon</span> Yahir. </h1>

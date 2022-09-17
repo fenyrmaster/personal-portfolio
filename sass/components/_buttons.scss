@@ -3,6 +3,7 @@
     font-family: "Oswald", sans-serif;
     text-transform: uppercase;
     background-color: white;
+    cursor: pointer;
     border: .1rem solid rgb(255, 102, 0);
     border-radius: 2rem;
     display: block;
@@ -48,6 +49,7 @@
     }
 }
 .btnText{
+    cursor: pointer;
     position: relative;
     z-index: 5;
 }
@@ -74,6 +76,7 @@
 
 .btn_form{
     width: 100%;
+    cursor: pointer;
     text-align: center;
     padding: .5rem 1rem;
     font-size: 2rem;
