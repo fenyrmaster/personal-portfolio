@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 0rem 1rem 4rem 4rem; }
+  margin: 5rem 1rem 4rem 4rem; }
 
 .header_image {
   position: relative;
@@ -808,6 +808,7 @@
 .skillDelete,
 .projectView {
   outline: none;
+  cursor: pointer;
   border: .05rem solid grey;
   width: 100%;
   margin: 0 auto;

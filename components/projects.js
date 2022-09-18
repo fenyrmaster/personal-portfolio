@@ -1,16 +1,17 @@
 import styles from "../styles/App.module.css";
 import CanvasMovimientoActivo from "../sketch/movimiento-activo";
 import Link from "next/dist/client/link";
-import { useState } from "react";
+import { useContext } from "react";
+import PublicContext from "../context/PublicProvider";
 import Project from "../components/project";
 
 const Projects = ({ projectsWidth, projectsHeight, allProjects }) => {
 
-    const [ animation, setAnimation ] = useState(false)
+    const { animationActive } = useContext(PublicContext);
 
     return(
         <>
-            <div onClick={() => animation ? setAnimation(false) : setAnimation(true)} className={styles.projectsContainer}>
+            <div className={styles.projectsContainer}>
                 <Project tipo={true}/>
                 <Project tipo={true}/>
                 <Project tipo={false}/>
@@ -22,7 +23,7 @@ const Projects = ({ projectsWidth, projectsHeight, allProjects }) => {
                 <Project tipo={true}/>
             </div>
             <Link href={allProjects ? "/" : "/all-projects"}><a className={`${styles.btn1} ${styles.customChange1}`}><span className={styles.btnText}>{allProjects ? "Back to home" : "All projects"}</span></a></Link>
-            { animation && <CanvasMovimientoActivo width1={projectsWidth} height2={projectsHeight}/> }
+            { animationActive && <CanvasMovimientoActivo width1={projectsWidth} height2={projectsHeight}/> }
         </>
     );
 }

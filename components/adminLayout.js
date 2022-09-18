@@ -1,17 +1,23 @@
 import ParticlesAdmin from "../sketch/admin-particles";
 import styles from "../styles/App.module.css";
 import Link from "next/dist/client/link";
-import { useEffect, useState } from "react";
+import AnimationController from "./animationController";
+import PublicContext from "../context/PublicProvider";
+import { useEffect, useState, useContext } from "react";
 
 export default function Layout({children}){
 
     const [ url, setUrl ] = useState("");
+    const { animationActive } = useContext(PublicContext);
     useEffect(() => {
         let current = window.location.pathname.split("/")[2];
         setUrl(current);
     }, []);
 
     return(
+        <>
+        {animationActive && <ParticlesAdmin/>}
+        <AnimationController/>
         <section className={styles.mainBck}>
             <div className={styles.content}>
                 <nav className={styles.adminNav}>
@@ -35,5 +41,6 @@ export default function Layout({children}){
                 <main className={styles.childContent}>{children}</main>
             </div>
         </section>
+        </>
     );
 }

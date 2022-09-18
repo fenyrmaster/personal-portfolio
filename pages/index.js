@@ -7,7 +7,8 @@ import Skill from "../components/skill";
 import AnimationController from "../components/animationController";
 import Navigation from "../components/navigation";
 import Projects from "../components/projects";
-import { useEffect, useRef, useState } from "react";
+import PublicContext from "../context/PublicProvider";
+import { useEffect, useRef, useState, useContext } from "react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -19,6 +20,7 @@ import { Autoplay, Pagination, FreeMode, Grid } from "swiper";
 
 export default function Home() {
   
+  const { animationActive, setAnimationActive } = useContext(PublicContext);
   const [projectsHeight, setProjectHeight] = useState(0);
   const [projectsWidth, setProjectWidth] = useState(0);
   const [shrinkWidth, setShrinkWidth] = useState(false);
@@ -55,7 +57,7 @@ export default function Home() {
         </div>
         <div className={styles.header_image}>
           <img src="/images/default.jpg"/>
-          <CanvasRodeo shrink={shrinkWidth}/>
+          { animationActive && <CanvasRodeo shrink={shrinkWidth}/> }
         </div>
       </header>
       <section className={styles.section2}>
