@@ -1,12 +1,15 @@
 import '../styles/globals.css'
 import { PublicProvider } from '../context/PublicProvider'
+import { SkillsProvider } from "../context/SkillsProvider";
 
 function MyApp({ Component, pageProps }) {
   return(
     <>
-      <PublicProvider>
-        <Component {...pageProps} />
-      </PublicProvider>
+      <SkillsProvider>
+        <PublicProvider>
+          <Component {...pageProps} />
+        </PublicProvider>
+      </SkillsProvider>
     </>
   ) 
 }

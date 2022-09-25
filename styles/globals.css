@@ -199,3 +199,11 @@ input[type="checkbox"]:disabled {
   color: var(--form-control-disabled);
   cursor: not-allowed;
 }
+
+/* Color of font when is front-end or back-end */
+.Front-end{
+  color: rgb(255, 144, 52);
+}
+.Back-end{
+  color: rgb(156, 83, 0);
+}
