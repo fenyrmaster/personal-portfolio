@@ -984,3 +984,13 @@
 @media (max-width: 37.5em) {
   .adminNav {
     grid-template-columns: repeat(2, 1fr); } }
+
+.textEmpty {
+  text-align: center;
+  grid-column: 1 / 5;
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+  background-color: #ffb938;
+  padding: .5rem 1rem;
+  width: 100%;
+  font-style: italic; }

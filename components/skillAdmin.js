@@ -3,7 +3,7 @@ import styles from "../styles/App.module.css";
 import SkillsContext from "../context/SkillsProvider";
 import { useContext } from "react";
 
-const SkillAdmin = ({deleteFn, editSkillFn, skillData}) => {
+const SkillAdmin = ({deleteFn, skillData, activateEditing}) => {
 
     // Listeners to know which skill is being edited or deleted
     const { setSkillDelete, setSkill } = useContext(SkillsContext);
@@ -15,7 +15,7 @@ const SkillAdmin = ({deleteFn, editSkillFn, skillData}) => {
             <p className={styles.skillText}>Skill level:</p>
             <p className={`${styles.skillLevel} ${styles.skilladm}`}>{skillData.level}</p>
             <div className={styles.skillButtons}>
-                <button onClick={() => {editSkillFn(true); setSkill(skillData)}} className={styles.skillEdit}>Skill</button>
+                <button onClick={() => activateEditing(skillData)} className={styles.skillEdit}>Edit</button>
                 <button onClick={() => {deleteFn(true); setSkillDelete(skillData)}} className={styles.skillDelete}>Delete</button>
             </div>
         </div>
