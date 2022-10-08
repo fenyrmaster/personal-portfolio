@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import isHotkey from "is-hotkey";
 import { Editable, withReact, useSlate, Slate } from "slate-react";
 import { Editor, Transforms, createEditor } from "slate";
@@ -15,11 +15,15 @@ const HOTKEYS = {
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
-const RichTextExample = () => {
+const RichTextExample = ({ createProject, setCreateProject }) => {
   const [value, setValue] = useState(initialValue);
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+
+  useEffect(() => {
+    setCreateProject({ ...createProject, ["text"]: value });
+  }, [value]);
 
   return (
     <Slate editor={editor} value={value} onChange={value => setValue(value)}>
@@ -170,36 +174,8 @@ const initialValue = [
   {
     type: "paragraph",
     children: [
-      { text: "This is editable " },
-      { text: "rich", bold: true },
-      { text: " text, " },
-      { text: "much", italic: true },
-      { text: " better than a " },
-      { text: "<textarea>", code: true },
-      { text: "!" }
+      { text: "Its time to write some text..." }
     ]
-  },
-  {
-    type: "paragraph",
-    children: [
-      {
-        text:
-          "Since it's rich text, you can do things like turn a selection of text "
-      },
-      { text: "bold", bold: true },
-      {
-        text:
-          ", or add a semantically rendered block quote in the middle of the page, like this:"
-      }
-    ]
-  },
-  {
-    type: "block-quote",
-    children: [{ text: "A wise quote." }]
-  },
-  {
-    type: "paragraph",
-    children: [{ text: "Try it out for yourself!" }]
   }
 ];
 
