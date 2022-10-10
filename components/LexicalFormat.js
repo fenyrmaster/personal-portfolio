@@ -16,7 +16,7 @@ const HOTKEYS = {
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
 const RichTextExample = ({ createProject, setCreateProject }) => {
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(createProject.text);
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
@@ -169,14 +169,5 @@ const MarkButton = ({ format, icon }) => {
     </Button>
   );
 };
-
-const initialValue = [
-  {
-    type: "paragraph",
-    children: [
-      { text: "Its time to write some text..." }
-    ]
-  }
-];
 
 export default RichTextExample;

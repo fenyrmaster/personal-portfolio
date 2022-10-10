@@ -25,6 +25,7 @@ export default function Skills({skillset}){
         setSkills(skillset);
     }, []);
 
+    //Controllers for all the project
     const [ newSkill, setNewSkill ] = useState(false);
     const [ deleteSkill, setDeleteSkill ] = useState(false);
     const [ skillLevel, setSkillLevel ] = useState(false);

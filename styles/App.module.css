@@ -965,7 +965,9 @@
     grid-template-columns: repeat(3, 1fr); }
   .adminProject_Main {
     flex-direction: column;
-    padding: .1rem .2rem; } }
+    padding: .1rem .2rem; }
+  .adminProject_Technologies {
+    justify-content: space-between; } }
 
 @media (max-width: 42.1875em) {
   .skillsAdmin {

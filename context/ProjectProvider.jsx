@@ -5,14 +5,30 @@ import Swal from "sweetalert2";
 const ProjectContext = createContext();
 
 export const ProjectProvider = ({children}) => {
-    const [ skills, setSkills ] = useState([]);
-    const [ skillDelete, setSkillDelete ] = useState({});
-    const [ skill, setSkill ] = useState({});
+    const [ projects, setProjects ] = useState([]);
+    const [ projectDelete, setProjectDelete ] = useState({});
+    const [ createProject, setCreateProject ] = useState({
+        nombre: "",
+        image: null,
+        focus: "Full Stack",
+        usage: "Learning Project",
+        text: [  {
+            type: "paragraph",
+            children: [
+              { text: "Its time to write some text..." }
+            ]
+          }],
+        completionDate: "",
+        technologies: [],
+        githubUrl: "",
+        liveUrl: "",
+        gallery: []
+    });
 
-    const obtenerSkills = async () => {
+    const obtenerProyectos = async () => {
         try{
-            const skills = await clienteAxios.get("/skills");
-            setSkills(skills.data.data);
+            const proyectos = await clienteAxios.get("/projects");
+            setProjects(proyectos.data.data);
         } catch(error){
             console.log(error);
         }
@@ -20,26 +36,50 @@ export const ProjectProvider = ({children}) => {
 
     const crearProyecto = async (data, setNewSkill, setFormLoading) => {
         try{
-            let bridge = skills;
             let form = new FormData();
+            let newText = JSON.stringify(data.text);
             form.append("nombre", data.nombre);
-            form.append("level", data.level);
-            form.append("role", data.role);
-            form.append("image", data.image);
-            const newSkill = await clienteAxios.post("/skills", form);
+            form.append("focus", data.focus);
+            form.append("usage", data.usage);
+            form.append("imagenPortada", data.image);
+            form.append("completionDate", data.completionDate);
+            form.append("technologies", data.technologies);
+            form.append("githubUrl", data.githubUrl);
+            form.append("liveUrl", data.liveUrl);
+            form.append("text", newText);
+            let datos = data.gallery;
+            Array.from(datos).map(el => form.append("imagenes", el));
+            await clienteAxios.post("/projects", form);
             Swal.fire({
                 title: "Success",
-                text: "Skill created successfully",
+                text: "Project created successfully",
                 icon: "success",
                 confirmButtonColor: "#ffcc00"
             });
-            bridge.push(newSkill.data.data);
-            setSkills(bridge);
+            setFormLoading(false);
             setNewSkill(false);
-            setFormLoading(false);
+            obtenerProyectos();
+            setCreateProject({
+                nombre: "",
+                image: null,
+                focus: "Full Stack",
+                usage: "Learning Project",
+                text: [  {
+                    type: "paragraph",
+                    children: [
+                      { text: "Its time to write some text..." }
+                    ]
+                  }],
+                completionDate: "",
+                technologies: [],
+                githubUrl: "",
+                liveUrl: "",
+                gallery: []
+            })
         } catch(error){
-            console.error(error);
             setFormLoading(false);
+            console.error(error);
+            
         }
     }
     const editarSkill = async (data, setNewSkill, setFormLoading, setSkillLevel) => {
@@ -69,25 +109,37 @@ export const ProjectProvider = ({children}) => {
             setFormLoading(false);
         }
     }
-    const borrarSkill = async id => {
+    const borrarProyecto = async id => {
         try{
-            let bridge = skills.filter(skill => skill._id !== id);
-            await clienteAxios.delete(`/skills/${id}`);
+            let bridge = projects.filter(skill => skill._id !== id);
+            await clienteAxios.delete(`/projects/${id}`);
             Swal.fire({
                 title: "Success",
-                text: "Skill deleted successfully",
+                text: "Project deleted successfully",
                 icon: "success",
                 confirmButtonColor: "#ffcc00"
             });
-            setSkills(bridge);
+            setProjects(bridge);
+            setProjectDelete({});
         } catch(error){
+            setProjectDelete({});
             console.error(error);
         }
     }
 
     return(
         <ProjectContext.Provider value={{
-            crearProyecto
+            //states
+            projects,
+            createProject,
+            projectDelete,
+            setProjectDelete,
+            setCreateProject,
+            setProjects,
+            //functions
+            crearProyecto,
+            obtenerProyectos,
+            borrarProyecto
         }}>
             {children}
         </ProjectContext.Provider>

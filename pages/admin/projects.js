@@ -1,40 +1,50 @@
 import Layout from "../../components/adminLayout";
 import styles from "../../styles/App.module.css";
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import AdminProject from "../../components/adminProjects";
 import LexicalFormat from "../../components/LexicalFormat";
 import SkillSelection from "../../components/skillSelection";
 import axios from "axios";
+import Swal from "sweetalert2";
+import ProjectContext from "../../context/ProjectProvider";
 
 export async function getStaticProps(){
     const data = await axios.get(`http://localhost:4000/api/skills?fields=[" image "]`);
     const skillset = data.data.data;
+    const project = await axios.get(`http://localhost:4000/api/projects`);
+    const projectsAll = project.data.data;
     return{
         props: {
-            skillset
+            skillset,
+            projectsAll
         }
     }
 }
 
-const ProjectsAdmin = ({skillset}) => {
+const ProjectsAdmin = ({skillset, projectsAll}) => {
+
+    const { projects, setProjects, crearProyecto, projectDelete, setProjectDelete, createProject, setCreateProject, borrarProyecto } = useContext(ProjectContext);
+    useEffect(() => {
+        setProjects(projectsAll);
+    }, []);
 
     const [ newProject, setNewProject ] = useState(false);
-    const [ createProject, setCreateProject ] = useState({
-        nombre: "",
-        image: null,
-        focus: "Full Stack",
-        usage: "Learning Project",
-        text: [],
-        completionDate: "",
-        technologies: [],
-        githubUrl: "",
-        liveUrl: "",
-        gallery: []
-    });
+    const [ formLoading, setFormLoading ] = useState(false);
+    const [ deleteAsk, setDeleteAsk ] = useState(false);
 
-    const createNewProject = e => {
+    const createNewProject = async e => {
         e.preventDefault();
-        console.log("creando...");
+        setFormLoading(true);
+        if(createProject.nombre === "" || createProject.image === null || createProject.focus === "" || createProject.usage === "" || createProject.completionDate === "" || createProject.technologies.length === 0 || createProject.githubUrl === "" || createProject.liveUrl === ""){
+            setFormLoading(false);
+            return Swal.fire({
+                title: "Error",
+                icon: "error",
+                text: "All fields are required",
+                confirmButtonColor: "#ffcc00"
+            });
+        }
+        await crearProyecto(createProject, setNewProject, setFormLoading);
     }
 
     const agregarSkill = skill => {
@@ -48,6 +58,30 @@ const ProjectsAdmin = ({skillset}) => {
         setCreateProject({ ...createProject, ["technologies"]: added });
     }
 
+    useEffect(() => {
+        if(deleteAsk){
+            Swal.fire({
+                title: 'Alert',
+                text: `¿Are you sure do you want to delete ${projectDelete.nombre}?`,
+                icon: "question",
+                confirmButtonColor: '#ffcc00',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: "No",
+                cancelButtonColor: "#ff0000"
+              }).then((result) => {
+                if(result.isDismissed){
+                    setDeleteAsk(false);
+                    setProjectDelete({});
+                }
+                if(result.isConfirmed){
+                    setDeleteAsk(false);
+                    borrarProyecto(projectDelete._id);
+                }
+              })
+        }
+    }, [deleteAsk]);
+
     return(
         <Layout>
             { !newProject ? 
@@ -55,10 +89,7 @@ const ProjectsAdmin = ({skillset}) => {
                     <button onClick={() => setNewProject(true)} className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>Add new projects</span></button>
                 </div>
                 <section className={styles.adminProjectContainer}>
-                    <AdminProject/>
-                    <AdminProject/>
-                    <AdminProject/>
-                    <AdminProject/>
+                    { projects.length !== 0 ? projects.map(project => <AdminProject setProjectDelete={setProjectDelete} deletion={setDeleteAsk} key={project._id} project={project}/>) : <p className={styles.textEmpty}>There are no projects, start by creating one...</p> }
                 </section>
             </> 
             : <>
@@ -115,8 +146,9 @@ const ProjectsAdmin = ({skillset}) => {
                     </div> 
                     <div className={styles.newSkillBtns}>
                         <button onClick={() => setNewProject(false)} className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>Cancel creation</span></button>
-                        <button type="submit" className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>Create New Project</span></button>
-                    </div>
+                        { !formLoading 
+                        ?<button type="submit" className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>Create New Project</span></button>                      
+                        :<button disabled type="submit" className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>Creating Project...</span></button> } </div>
                     </form></>}
         </Layout>
     );
