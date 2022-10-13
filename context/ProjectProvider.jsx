@@ -82,31 +82,58 @@ export const ProjectProvider = ({children}) => {
             
         }
     }
-    const editarSkill = async (data, setNewSkill, setFormLoading, setSkillLevel) => {
+    const editarProyecto = async (data, setNewSkill, setFormLoading, setEdit, projectId) => {
         try{
-            let bridge;
             let form = new FormData();
+            let newText = JSON.stringify(data.text);
             form.append("nombre", data.nombre);
-            form.append("level", data.level);
-            form.append("role", data.role);
-            if(data.image.size){
-                form.append("image", data.image);
+            form.append("focus", data.focus);
+            form.append("usage", data.usage);
+            form.append("completionDate", data.completionDate);
+            form.append("technologies", data.technologies);
+            form.append("githubUrl", data.githubUrl);
+            form.append("liveUrl", data.liveUrl);
+            form.append("text", newText);
+            let datos;
+            if(data.gallery){
+                datos = data.gallery;
+                Array.from(datos).map(el => form.append("imagenes", el));
             }
-            const editedSkill = await clienteAxios.patch(`/skills/${data._id}`, form);
+            if(data.image){
+                form.append("imagenPortada", data.image);
+            }
+            await clienteAxios.patch(`/projects/${projectId}`, form);
             Swal.fire({
                 title: "Success",
-                text: "Skill edited successfully",
+                text: "Project edited successfully",
                 icon: "success",
                 confirmButtonColor: "#ffcc00"
             });
-            bridge = skills.map(skill => skill._id !== data._id ? skill : editedSkill.data.data);
-            setSkills(bridge);
+            setFormLoading(false);
             setNewSkill(false);
-            setFormLoading(false);
-            setSkillLevel(false);
+            setEdit(false);
+            obtenerProyectos();
+            setCreateProject({
+                nombre: "",
+                image: null,
+                focus: "Full Stack",
+                usage: "Learning Project",
+                text: [  {
+                    type: "paragraph",
+                    children: [
+                      { text: "Its time to write some text..." }
+                    ]
+                  }],
+                completionDate: "",
+                technologies: [],
+                githubUrl: "",
+                liveUrl: "",
+                gallery: []
+            })
         } catch(error){
-            console.error(error);
             setFormLoading(false);
+            setEdit(false);
+            console.error(error);
         }
     }
     const borrarProyecto = async id => {
@@ -139,7 +166,8 @@ export const ProjectProvider = ({children}) => {
             //functions
             crearProyecto,
             obtenerProyectos,
-            borrarProyecto
+            borrarProyecto,
+            editarProyecto
         }}>
             {children}
         </ProjectContext.Provider>

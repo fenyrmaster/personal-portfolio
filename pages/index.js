@@ -7,6 +7,7 @@ import Skill from "../components/skill";
 import AnimationController from "../components/animationController";
 import Navigation from "../components/navigation";
 import Projects from "../components/projects";
+import axios from "axios";
 import PublicContext from "../context/PublicProvider";
 import { useEffect, useRef, useState, useContext } from "react";
 
@@ -18,18 +19,30 @@ import "swiper/css/bundle";
 
 import { Autoplay, Pagination, FreeMode, Grid } from "swiper";
 
-export default function Home() {
+export async function getStaticProps(){
+  const data = await axios.get(`http://localhost:4000/api/skills`);
+  const skillset = data.data.data;
+  return{
+      props: {
+          skillset
+      }
+  }
+}
+
+export default function Home({skillset}) {
   
   const { animationActive, setAnimationActive } = useContext(PublicContext);
   const [projectsHeight, setProjectHeight] = useState(0);
   const [projectsWidth, setProjectWidth] = useState(0);
   const [shrinkWidth, setShrinkWidth] = useState(false);
+  const [ currentWidth, setCurrentWidth ] = useState(0);
   const projectRef = useRef(null);
 
   const updateSize = () => {
     if(projectRef.current.clientHeight && projectRef.current.clientWidth){
       setProjectHeight(projectRef.current.clientHeight);
       setProjectWidth(projectRef.current.clientWidth);
+      setCurrentWidth(projectRef.current.clientWidth);
     }
     if(projectRef.current.clientWidth <= 1200){
       setShrinkWidth(true);
@@ -69,30 +82,11 @@ export default function Home() {
           <Swiper
             spaceBetween={30}
             speed={7000}
-            slidesPerView={6}
-            centeredSlides={true}
             grabCursor={true}
-            loop={true}
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-            }}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev"
-            }}
-            freeMode={true}
-            modules={[Grid, Autoplay, FreeMode]}
+            slidesPerView={3}
             className={styles.swiperSkills}
           >
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            { skillset.length !== 0 && skillset.map(skill => {if(skill.role === "Front-end"){ return <SwiperSlide key={skill._id} className={styles.swiperSlide}><Skill key={skill._id} skill={skill}/></SwiperSlide> }}) }
           </Swiper>
         </div>
         <div className={styles.organizer}>
@@ -101,31 +95,11 @@ export default function Home() {
           <Swiper
             spaceBetween={30}
             speed={7000}
-            slidesPerView={6}
-            centeredSlides={true}
             grabCursor={true}
-            loop={true}
-            autoplay={{
-              delay: 0,
-              reverseDirection: true,
-              disableOnInteraction: false,
-            }}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev"
-            }}
-            freeMode={true}
-            modules={[Grid, Autoplay, FreeMode]}
+            slidesPerView={3}
             className={styles.swiperSkills2}
           >
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}><Skill/></SwiperSlide>
+            { skillset.length !== 0 && skillset.map(skill => {if(skill.role === "Back-end"){ return <SwiperSlide key={skill._id} className={styles.swiperSlide}><Skill key={skill._id} skill={skill}/></SwiperSlide> }}) }
           </Swiper>
         </div>
         </div>

@@ -1,7 +1,7 @@
 import styles from "../styles/App.module.css";
 import Image from "next/image";
 
-const AdminProject = ({ project, deletion, setProjectDelete }) => {
+const AdminProject = ({ project, deletion, setProjectDelete, prepareEdit, setEditName }) => {
     return(
             <div>
                 <h2 className={styles.adminProject_title}>{project.nombre}</h2>
@@ -12,9 +12,9 @@ const AdminProject = ({ project, deletion, setProjectDelete }) => {
                     </div>
                 </div>
                 <div className={styles.adminProject_Buttons}>
-                <button className={styles.skillEdit}>Edit</button>
-                <button className={styles.projectView}>View</button>
-                <button onClick={() => {deletion(true); setProjectDelete(project)}} className={styles.skillDelete}>Delete</button>
+                    <button onClick={() => {prepareEdit(project); setEditName(project.nombre)}} className={styles.skillEdit}>Edit</button>
+                    <button className={styles.projectView}>View</button>
+                    <button onClick={() => {deletion(true); setProjectDelete(project)}} className={styles.skillDelete}>Delete</button>
                 </div>
             </div>
     );
