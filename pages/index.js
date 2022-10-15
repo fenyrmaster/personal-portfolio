@@ -20,16 +20,21 @@ import "swiper/css/bundle";
 import { Autoplay, Pagination, FreeMode, Grid } from "swiper";
 
 export async function getStaticProps(){
+  // Fetch the skills
   const data = await axios.get(`http://localhost:4000/api/skills`);
   const skillset = data.data.data;
+  // Fetch the projects
+  const project = await axios.get(`http://localhost:4000/api/projects?limit=6&sort=-completionDate`);
+  const projectsAll = project.data.data;
   return{
       props: {
+          projectsAll,
           skillset
       }
   }
 }
 
-export default function Home({skillset}) {
+export default function Home({skillset, projectsAll}) {
   
   const { animationActive, setAnimationActive } = useContext(PublicContext);
   const [projectsHeight, setProjectHeight] = useState(0);
@@ -81,9 +86,17 @@ export default function Home({skillset}) {
         <div className={styles.swiperWrapper}>
           <Swiper
             spaceBetween={30}
-            speed={7000}
+            speed={5000}
+            slidesPerView={"auto"}
+            loop={true}
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+            }}
+            freeMode={true}
+            modules={[Autoplay, FreeMode]}
             grabCursor={true}
-            slidesPerView={3}
+            breakpoints={{ 1400: { slidesPerView: 5 }, 800: { slidesPerView: 3 }, 200: { slidesPerView: 2 } }}
             className={styles.swiperSkills}
           >
             { skillset.length !== 0 && skillset.map(skill => {if(skill.role === "Front-end"){ return <SwiperSlide key={skill._id} className={styles.swiperSlide}><Skill key={skill._id} skill={skill}/></SwiperSlide> }}) }
@@ -94,9 +107,18 @@ export default function Home({skillset}) {
         <div className={styles.swiperWrapper}>
           <Swiper
             spaceBetween={30}
-            speed={7000}
+            speed={5000}
+            slidesPerView={"auto"}
+            loop={true}
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+              reverseDirection: true
+            }}
+            freeMode={true}
+            modules={[Autoplay, FreeMode]}
             grabCursor={true}
-            slidesPerView={3}
+            breakpoints={{ 1400: { slidesPerView: 5 }, 800: { slidesPerView: 3 }, 200: { slidesPerView: 2 } }}
             className={styles.swiperSkills2}
           >
             { skillset.length !== 0 && skillset.map(skill => {if(skill.role === "Back-end"){ return <SwiperSlide key={skill._id} className={styles.swiperSlide}><Skill key={skill._id} skill={skill}/></SwiperSlide> }}) }
@@ -108,7 +130,7 @@ export default function Home({skillset}) {
         <div className={styles.subtitleWrapper}>
           <h2 className={styles.subtitle}>My Projects</h2>  
         </div>
-        <Projects projectsHeight={projectsHeight} projectsWidth={projectsWidth}/>
+        <Projects projectsHeight={projectsHeight} projectsWidth={projectsWidth} allProjects={projectsAll} mainPage={true}/>
       </section>
       <section id="contact-form" className={styles.section4}>
         <div className={styles.contact_container}>

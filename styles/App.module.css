@@ -230,7 +230,6 @@
   font-size: 18px;
   background-color: white;
   height: 70% !important;
-  width: 15rem !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -281,8 +280,6 @@
     width: 100%; } }
 
 @media (max-width: 43.75em) {
-  .swiperSlide {
-    width: 9rem !important; }
   .swiperWrapper {
     height: 40rem; }
   .swiperImage {

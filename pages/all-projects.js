@@ -3,11 +3,24 @@ import { useRef, useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import styles from "../styles/App.module.css";
 import Navigation from "../components/navigation";
+import axios from "axios";
 import AnimationController from "../components/animationController";
 
-export default function ProjectsAll(){
+export async function getStaticProps(){
+    // Fetch the projects
+    const project = await axios.get(`http://localhost:4000/api/projects?sort=-completionDate`);
+    const projectsAll = project.data.data;
+    return{
+        props: {
+            projectsAll
+        }
+    }
+  }
+
+export default function ProjectsAll({projectsAll}){
 
     const [colorSelect, setColorState] = useState("rgb(112, 112, 112)");
+    const [ shownProjects, setShownProjects ] = useState([]);
 
     const Select = styled.select`
 
@@ -23,9 +36,13 @@ export default function ProjectsAll(){
     const projectRef = useRef(null);
 
     useEffect(() => {
+        setShownProjects(projectsAll);
         window.addEventListener("resize", updateSize);
         updateSize();
     }, []);
+    useEffect(() => {
+        updateSize();
+    }, [shownProjects]);
 
     
     const updateSize = () => {
@@ -37,13 +54,19 @@ export default function ProjectsAll(){
 
     const cambiarCategoria = e => {
         setSelectValue(e.target.value);
+        let projects = projectsAll;
+        let results;
         if(e.target.value === "All Projects"){
             setColorState("rgb(112, 112, 112)");
+            results = projects;
         } else if(e.target.value === "Real Projects"){
             setColorState("#ffb310");
+            results = projects.filter(project => project.usage === "Real Project");
         } else if(e.target.value === "Learning Projects"){
             setColorState("rgb(254, 223, 0)");
+            results = projects.filter(project => project.usage === "Learning Project");
         }
+        setShownProjects(results);
     }
 
     return(
@@ -61,7 +84,7 @@ export default function ProjectsAll(){
                         <option>Learning Projects</option>
                     </Select>
                 </form>
-                <Projects projectsHeight={projectsHeight} projectsWidth={projectsWidth} allProjects={true}/>
+                <Projects projectsHeight={projectsHeight} projectsWidth={projectsWidth} allProjects={shownProjects} mainPage={false}/>
             </section>
         </>
     )

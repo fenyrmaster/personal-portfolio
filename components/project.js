@@ -2,25 +2,19 @@ import styles from "../styles/App.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-const Project = ({ tipo }) => {
+const Project = ({ tipo, project }) => {
     return(
         <div className={styles.project}>
             <div className={`${styles.techImgContainer} ${tipo ? styles.bckgOrange : styles.bckgYellow}`}>
-                <img className={styles.techImg} src="/images/Screenshot_9.png"/>
+                <img className={styles.techImg} src={project.image}/>
             </div>
             <div className={styles.linkWrapper}>
-                <Link href={`/project/1234`}><a className={styles.btn1}><span className={styles.btnText}>More project details</span></a></Link>
+                <Link href={`/project/${project.slug}`}><a className={styles.btn1}><span className={styles.btnText}>More project details</span></a></Link>
             </div>
             <h4 className={styles.tecnologies}>Tecnologies used:</h4>
             <div className={styles.tech}>
-                <Image className={styles.techImg1} src="/../public/images/React-solo.png" width={50} height={50}/>
-                <Image className={styles.techImg1} src="/../public/images/React-solo.png" width={50} height={50}/>
-                <Image className={styles.techImg1} src="/../public/images/React-solo.png" width={50} height={50}/>
-                <Image className={styles.techImg1} src="/../public/images/React-solo.png" width={50} height={50}/>
-                <Image className={styles.techImg1} src="/../public/images/React-solo.png" width={50} height={50}/>
-                <Image className={styles.techImg1} src="/../public/images/React-solo.png" width={50} height={50}/>
-                <Image className={styles.techImg1} src="/../public/images/React-solo.png" width={50} height={50}/>
-            
+                { project.technologies.map(tech => <Image key={tech._id} className={styles.techImg1} src={tech.image} width={50} height={50}/>) }
+                
             </div>
         </div>
     );
