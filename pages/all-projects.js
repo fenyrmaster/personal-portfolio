@@ -46,9 +46,9 @@ export default function ProjectsAll({projectsAll}){
 
     
     const updateSize = () => {
-        if(projectRef.current.clientHeight && projectRef.current.clientWidth){
-          setProjectHeight(projectRef.current.clientHeight);
-          setProjectWidth(projectRef.current.clientWidth);
+        if(projectRef.current?.clientHeight && projectRef.current?.clientWidth){
+          setProjectHeight(projectRef.current?.clientHeight);
+          setProjectWidth(projectRef.current?.clientWidth);
         }
     }
 

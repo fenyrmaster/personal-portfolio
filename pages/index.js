@@ -44,14 +44,14 @@ export default function Home({skillset, projectsAll}) {
   const projectRef = useRef(null);
 
   const updateSize = () => {
-    if(projectRef.current.clientHeight && projectRef.current.clientWidth){
-      setProjectHeight(projectRef.current.clientHeight);
-      setProjectWidth(projectRef.current.clientWidth);
-      setCurrentWidth(projectRef.current.clientWidth);
+    if(projectRef.current?.clientHeight && projectRef.current?.clientWidth){
+      setProjectHeight(projectRef.current?.clientHeight);
+      setProjectWidth(projectRef.current?.clientWidth);
+      setCurrentWidth(projectRef.current?.clientWidth);
     }
-    if(projectRef.current.clientWidth <= 1200){
+    if(projectRef.current?.clientWidth <= 1200){
       setShrinkWidth(true);
-    } else if(projectRef.current.clientWidth > 1200){
+    } else if(projectRef.current?.clientWidth > 1200){
       setShrinkWidth(false);
     }
   }

@@ -4,12 +4,38 @@ import styled from "@emotion/styled";
 import Image from "next/dist/client/image";
 import Navigation from "../../components/navigation";
 import Link from "next/dist/client/link";
+import axios from "axios";
 import AnimationController from "../../components/animationController";
 
-export default function ProjectsAll(){
+export async function getStaticProps({params}){
+    // Fetch the projects
+    const data = await axios.get(`http://localhost:4000/api/projects/${params.id}`);
+    const project = data.data.data;
+    return{
+        props: {
+            project: project ? project : {}
+        }
+    }
+}
+
+export async function getStaticPaths() {
+    const projects = await axios.get(`http://localhost:4000/api/projects`);
+    const paths = projects.data.data.map(project => {
+        return{
+            params: {
+                id: project.slug.toString()
+            }
+        }
+    });
+    return{
+        paths,
+        fallback: false
+    }
+}
+
+export default function ProjectsAll({project}){
 
     const [ parallaxValue, setParallaxValue ] = useState("380px");
-    const [ realProject, setRealProject ] = useState(true);
     const [ floaterAppear, setFloaterAppear ] = useState(false);
     const floaterRef = useRef(null);
 
@@ -26,13 +52,37 @@ export default function ProjectsAll(){
             width: 80%
         }
     `;
+    const ProjectDetails = styled.header`
+        height: 100vh;
+        position: relative;
+        perspective: .1rem;
+        transform-style: preserve-3d;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
+        clip-path: polygon(50% 0%, 100% 0, 100% 85%, 50% 100%, 0 85%, 0 0);
+        z-index: 5;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right bottom, rgba(255, 80, 27, 0.807), rgba(255, 136, 0, 0.774)), url(${project.image});
+            background-position: center center;
+            background-size: cover;
+            object-fit: cover;
+            transform: translateZ(-.1rem) scale(2);
+        }
+    `;
 
     const parallax = () => {
         let value = (-window.scrollY * .2 + 380 + "px");
         setParallaxValue(value);
     }
     const dataFixed = () => {
-        let offset = floaterRef.current.clientHeight - 180;
+        let offset = floaterRef.current?.clientHeight - 180;
         if(window.pageYOffset > offset){
             setFloaterAppear(true);
         } else if(window.pageYOffset < offset){
@@ -53,54 +103,43 @@ export default function ProjectsAll(){
         <>
             <Navigation/>
             <div className={"separator"}></div>
-            <header ref={floaterRef} className={styles.projectDetails}>
+            <ProjectDetails ref={floaterRef}>
                 <Details>
-                    <h1 className={styles.project_title}>Online jelwery store</h1>
+                    <h1 className={styles.project_title}>{project.nombre}</h1>
                     <div className={styles.project_extras}>
                         <div className={styles.project_text}>
                             <ion-icon className={"iconProject"} name="construct-sharp"></ion-icon>
-                            <p className={styles.project_extras_paragraph}>Full stack</p>
+                            <p className={styles.project_extras_paragraph}>{project.focus}</p>
                         </div>
                         <div className={styles.project_text}>
-                            <ion-icon className={"iconProject"} name={ realProject ? "globe-sharp" : "book-sharp"}></ion-icon>
-                            <p className={styles.project_extras_paragraph}>Real Project</p>
+                            <ion-icon className={"iconProject"} name={ project.usage === "Real Project" ? "globe-sharp" : "book-sharp"}></ion-icon>
+                            <p className={styles.project_extras_paragraph}>{project.usage}</p>
                         </div>
                     </div>
                 </Details>
-            </header>
+            </ProjectDetails>
             <section className={styles.project_details}>
                 <div className={styles.project_separator}></div>
                 <div className={`${styles.project_floater} ${floaterAppear ? styles.floaterFixed : ""}`}>
                     <div className={styles.project_data}>
                         <p className={styles.project_data_paragraph}>Project Name:</p>
-                        <p className={styles.project_data_paragraph2}>Jelwery Store store</p>
+                        <p className={styles.project_data_paragraph2}>{project.nombre}</p>
                     </div>
                     <div className={styles.project_data}>
                         <p className={styles.project_data_paragraph}>Date of completion:</p>
-                        <p className={styles.project_data_paragraph2}>03/November/2022</p>
+                        <p className={styles.project_data_paragraph2}>{new Date(project.completionDate.split("T")[0]).toLocaleDateString("en-US", {day: "2-digit", year: "numeric", month: "long"})}</p>
                     </div>
                     <div className={styles.project_data}>
                         <p className={styles.project_data_paragraph}>Technologies used:</p>
                         <div className={styles.project_data_technologies}>
-                            <Image className={styles.swiperImage} src={"/../public/images/React-solo.png"} width={45} height={45}/>
-                            <Image className={styles.swiperImage} src={"/../public/images/React-solo.png"} width={45} height={45}/>
-                            <Image className={styles.swiperImage} src={"/../public/images/React-solo.png"} width={45} height={45}/>
-                            <Image className={styles.swiperImage} src={"/../public/images/React-solo.png"} width={45} height={45}/>
-                            <Image className={styles.swiperImage} src={"/../public/images/React-solo.png"} width={45} height={45}/>                        
-                            <Image className={styles.swiperImage} src={"/../public/images/React-solo.png"} width={45} height={45}/>                        
-                            <Image className={styles.swiperImage} src={"/../public/images/React-solo.png"} width={45} height={45}/>                        
-                            <Image className={styles.swiperImage} src={"/../public/images/React-solo.png"} width={45} height={45}/>                        
-
+                            { project.technologies.map(tech => <Image className={styles.swiperImage} src={tech.image} width={45} height={45}/>) }
                         </div>
                     </div>
-                    <Link href="/"><a className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>github Repository.</span></a></Link>
-                    <Link href="/"><a className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Live website.</span></a></Link>
+                    <Link href={project.githubUrl}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>github Repository.</span></a></Link>
+                    <Link href={project.liveUrl}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Live website.</span></a></Link>
                 </div>
                 <div  className={styles.project_description}>
-                    <h2>So here it comes a text</h2>
-                    <p>Lorem ipsum dolor sit amet. Et mollitia voluptatibus et consequatur odit ut recusandae vitae quo dolor culpa. Nam maiores dignissimos qui magni omnis et quae temporibus in harum tenetur ut corporis nostrum ut repellendus aperiam et voluptatibus inventore!
-                        Ad asperiores rerum ea ipsum assumenda et velit dolore. Qui molestiae voluptatem ut reprehenderit sunt et ipsa suscipit et eveniet quasi ut dolor asperiores non numquam maxime ut aliquid suscipit. Ut iure quaerat et totam impedit ut illo tempore ut minima explicabo ab placeat eius! Aut voluptate quae eos unde repellat et asperiores omnis et maxime repellendus aut consequatur praesentium ea eligendi maxime.
-                        Est voluptate obcaecati ad autem eveniet et ipsam rerum sed maiores possimus sit fugiat quibusdam ut voluptatum aliquam! Ea pariatur architecto ut facere nesciunt ea natus sequi est optio tempora in unde odit aut dolore nulla et nesciunt corporis. Et dolor accusamus et mollitia inventore est architecto molestiae aut voluptas dolores!  doworo</p>
+                    { project.text.map(content => <p className={content.type}>{content.children.map(el => <span className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""}`}>{el.text}</span>)}</p>) }
                 </div>
             </section>
         </>
