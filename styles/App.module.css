@@ -618,7 +618,10 @@
 
 .project_details {
   display: flex;
-  position: relative; }
+  position: relative;
+  margin-top: -15rem;
+  padding-top: 15rem;
+  background-color: #fffbea; }
 
 .project_floater {
   visibility: hidden;
@@ -640,7 +643,8 @@
 .project_description {
   flex-basis: 70%;
   margin: 2rem 4rem;
-  font-size: 2rem; }
+  font-size: 2rem;
+  margin-right: 25vh; }
 
 .project_data {
   margin-bottom: 1.3rem; }
@@ -664,6 +668,10 @@
   visibility: visible;
   opacity: 1; }
 
+@media (max-width: 87.5em) {
+  .project_description {
+    margin-right: 10vh; } }
+
 @media (max-width: 68.75em) {
   .project_floater {
     position: relative;
@@ -682,12 +690,15 @@
   .project_details {
     flex-direction: column;
     justify-content: center;
-    align-items: center; } }
+    align-items: center; }
+  .project_description {
+    margin-right: 2rem; } }
 
 @media (max-width: 37.5em) {
   .project_description {
     margin: 0 .5rem;
-    font-size: 1.3rem; } }
+    font-size: 1.3rem;
+    margin-right: 1rem; } }
 
 @media (max-width: 34.375em) {
   .project_title {
@@ -697,6 +708,20 @@
   .projectDetails {
     -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 0 90%, 0 0);
     clip-path: polygon(50% 0%, 100% 0, 100% 90%, 50% 100%, 0 90%, 0 0); } }
+
+.masonry {
+  column-count: 2;
+  width: 100%;
+  margin: 0 auto; }
+  .masonry_img {
+    width: 100%;
+    background-color: orange;
+    padding: .1rem;
+    margin: .2rem; }
+
+@media (max-width: 50em) {
+  .masonry {
+    column-count: 1; } }
 
 .content {
   position: absolute;

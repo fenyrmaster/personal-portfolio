@@ -207,3 +207,74 @@ input[type="checkbox"]:disabled {
 .Back-end{
   color: rgb(156, 83, 0);
 }
+
+/* Classes for the texts */
+.heading-one{
+  font-size: 3rem;
+  margin: 1rem 0;
+  font-family: "Oswald", sans-serif;
+  font-weight: 800 !important;
+  color: rgb(80, 27, 0);
+}
+.heading-two{
+  font-size: 2.3rem;
+  color: rgb(75, 67, 0);
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+}
+.paragraph{
+  font-family: "Ubuntu", sans-serif;
+  line-height: 1.5;
+  font-size: 1.3rem;
+}
+.italic{
+  font-style: italic;
+}
+.bold{
+  font-weight: 600;
+}
+.underline{
+  text-decoration: underline;
+}
+.code{
+  font-family: "Source Code Pro", sans-serif;
+  background-color: rgb(255, 195, 83);
+}
+.block-quote{
+  font-size: 2rem;
+  margin: 0 0 0 2rem;
+  font-weight: 500;
+  text-decoration: underline .16rem grey;
+  font-family: "Dancing Script", sans-serif;
+}
+.bulleted-list,
+.numbered-list{
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.3rem;
+  color: rgb(63, 63, 63);
+}
+.custom1{
+  text-align: left;
+  padding-top: 1rem !important;
+  width: 100%;
+}
+.numbered-list{
+  list-style-type: decimal;
+}
+
+@media(max-width: 37.5em){
+  .heading-one{
+    font-size: 2.3rem;
+  }
+  .heading-two{
+    font-size: 1.8rem;
+  }
+  .paragraph,
+  .bulleted-list,
+  .numbered-list{
+    font-size: 1.1rem;
+  }
+  .block-quote{
+    font-size: 1.3rem;
+  }
+}
