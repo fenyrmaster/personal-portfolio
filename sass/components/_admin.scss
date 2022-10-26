@@ -27,6 +27,8 @@
 .adminNavText{
     position: relative;
     z-index: 5;
+    align-items: center;
+    display: flex;
     font-size: 1.3rem;
     font-family: "Oswald", sans-serif;
     color: white;
@@ -116,6 +118,7 @@
     border-color: rgb(255, 0, 119);
     background-color: rgba(255, 0, 212, 0.096);
     transition: .3s;
+    text-align: center;
     &:hover{
         background-color: rgb(255, 0, 149);
         color: white;

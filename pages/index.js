@@ -10,6 +10,7 @@ import Projects from "../components/projects";
 import axios from "axios";
 import PublicContext from "../context/PublicProvider";
 import { useEffect, useRef, useState, useContext } from "react";
+import Footer from "../components/footer";
 
 // Import Swiper styles
 import "swiper/css";
@@ -18,6 +19,8 @@ import "swiper/css/pagination";
 import "swiper/css/bundle";
 
 import { Autoplay, Pagination, FreeMode, Grid } from "swiper";
+import ProjectContext from "../context/ProjectProvider";
+import Swal from "sweetalert2";
 
 export async function getStaticProps(){
   // Fetch the skills
@@ -37,11 +40,20 @@ export async function getStaticProps(){
 export default function Home({skillset, projectsAll}) {
   
   const { animationActive, setAnimationActive } = useContext(PublicContext);
+  const { enviarEmails } = useContext(ProjectContext);
   const [projectsHeight, setProjectHeight] = useState(0);
   const [projectsWidth, setProjectWidth] = useState(0);
   const [shrinkWidth, setShrinkWidth] = useState(false);
   const [ currentWidth, setCurrentWidth ] = useState(0);
   const projectRef = useRef(null);
+
+  // Data for the email
+  const [ emailData, setEmailData ] = useState({
+    client: "",
+    message: "",
+    email: "",
+    topic: ""
+  })
 
   const updateSize = () => {
     if(projectRef.current?.clientHeight && projectRef.current?.clientWidth){
@@ -54,6 +66,20 @@ export default function Home({skillset, projectsAll}) {
     } else if(projectRef.current?.clientWidth > 1200){
       setShrinkWidth(false);
     }
+  }
+
+  const sendMails = async e => {
+    e.preventDefault();
+    if(emailData.client === "" || emailData.email === "" || emailData.message === "" || emailData.topic === ""){
+      Swal.fire({
+        title: "Before you send the email...",
+        text: "All the fields are required",
+        icon: "info",
+        confirmButtonColor: "#ffcc00"
+      });
+      return;
+    }
+    await enviarEmails(emailData);
   }
 
   useEffect(() => {
@@ -138,24 +164,25 @@ export default function Home({skillset, projectsAll}) {
           <h2 className={styles.subtitle}>Contact me</h2>  
           </div>   
           <h3 className={styles.contact_header}>Are you interested in a project and you dont know how to start?</h3>
-          <form className={styles.contact_form}>
+          <form onSubmit={e => sendMails(e)} className={styles.contact_form}>
           <h3 className={styles.contact_header}>Lets talk</h3>
             <div className={styles.contact_form_inputs}>
               <div className={styles.contact_form_data}>
-                <input className={styles.contact_form_input} placeholder="I'd like to talk about..." type={"text"}/>
+                <input name="topic" value={emailData.topic} onChange={e => setEmailData({...emailData, [e.target.name]: e.target.value})} className={styles.contact_form_input} placeholder="I'd like to talk about..." type={"text"}/>
                 <div className={styles.contact_dual}>
-                  <input className={styles.contact_form_input} placeholder="Name..."/>
-                  <input className={styles.contact_form_input} placeholder="Email..."/>
+                  <input className={styles.contact_form_input} value={emailData.client} name="client" onChange={e => setEmailData({...emailData, [e.target.name]: e.target.value})} placeholder="Name..."/>
+                  <input className={styles.contact_form_input} value={emailData.email} name="email" onChange={e => setEmailData({...emailData, [e.target.name]: e.target.value})} placeholder="Email..."/>
                 </div>
               </div>
               <div className={styles.contact_form_message}>
-                <textarea className={styles.contact_form_textarea} placeholder="Message"></textarea>
+                <textarea className={styles.contact_form_textarea} name="message" value={emailData.message} onChange={e => setEmailData({...emailData, [e.target.name]: e.target.value})} placeholder="Message"></textarea>
               </div>
             </div>
             <button className={styles.btn_form} type="submit">Send Message</button>
           </form>
         </div>
       </section>
+      <Footer/>
     </>
   )
 }

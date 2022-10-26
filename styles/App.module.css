@@ -753,6 +753,8 @@
 .adminNavText {
   position: relative;
   z-index: 5;
+  align-items: center;
+  display: flex;
   font-size: 1.3rem;
   font-family: "Oswald", sans-serif;
   color: white; }
@@ -839,7 +841,8 @@
 .projectView {
   border-color: #ff0077;
   background-color: rgba(255, 0, 212, 0.096);
-  transition: .3s; }
+  transition: .3s;
+  text-align: center; }
   .projectView:hover {
     background-color: #ff0095;
     color: white; }
@@ -996,3 +999,33 @@
   padding: .5rem 1rem;
   width: 100%;
   font-style: italic; }
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffedcb;
+  position: relative;
+  z-index: 1000; }
+  .footer_image {
+    margin: 2rem;
+    border-bottom: .1rem solid grey; }
+  .footer_links {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    flex-direction: column; }
+  .footer_content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem; }
+
+@media (max-width: 62.5em) {
+  .footer_content {
+    flex-direction: column; }
+    .footer_content .btnTextNav {
+      font-size: 1.7rem !important; }
+    .footer_content .navButtons {
+      margin: .5rem 0 !important; } }

@@ -5,7 +5,7 @@ import Image from "next/dist/client/image";
 import Navigation from "../../components/navigation";
 import Link from "next/dist/client/link";
 import axios from "axios";
-import AnimationController from "../../components/animationController";
+import Footer from "../../components/footer";
 
 export async function getStaticProps({params}){
     // Fetch the projects
@@ -148,6 +148,7 @@ export default function ProjectsAll({project}){
                     </div>
                 </div>
             </section>
+            <Footer/>
         </>
     );
 };

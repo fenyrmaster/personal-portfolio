@@ -154,6 +154,16 @@ export const ProjectProvider = ({children}) => {
         }
     }
 
+    const enviarEmails = async data => {
+        await clienteAxios.post(`projects/email`, data);
+        Swal.fire({
+            title: "Success",
+            text: "Messagen send successfully",
+            icon: "success",
+            confirmButtonColor: "#ffcc00"
+        })
+    }
+
     return(
         <ProjectContext.Provider value={{
             //states
@@ -167,7 +177,8 @@ export const ProjectProvider = ({children}) => {
             crearProyecto,
             obtenerProyectos,
             borrarProyecto,
-            editarProyecto
+            editarProyecto,
+            enviarEmails
         }}>
             {children}
         </ProjectContext.Provider>

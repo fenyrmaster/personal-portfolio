@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import styles from "../styles/App.module.css";
 import Navigation from "../components/navigation";
+import Footer from "../components/footer";
 import axios from "axios";
 import AnimationController from "../components/animationController";
 
@@ -86,6 +87,7 @@ export default function ProjectsAll({projectsAll}){
                 </form>
                 <Projects projectsHeight={projectsHeight} projectsWidth={projectsWidth} allProjects={shownProjects} mainPage={false}/>
             </section>
+            <Footer/>
         </>
     )
 }

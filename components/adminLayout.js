@@ -8,8 +8,9 @@ import { useEffect, useState, useContext } from "react";
 export default function Layout({children}){
 
     const [ url, setUrl ] = useState("");
-    const { animationActive } = useContext(PublicContext);
+    const { animationActive, validate } = useContext(PublicContext);
     useEffect(() => {
+        validate();
         let current = window.location.pathname.split("/")[2];
         setUrl(current);
     }, []);

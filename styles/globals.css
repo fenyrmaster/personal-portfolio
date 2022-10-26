@@ -12,6 +12,11 @@ a {
 * {
   box-sizing: border-box;
 }
+.cusomName1{
+  margin: 0 !important;
+  padding: .8rem 3rem;
+  display: inline-block !important;
+}
 /* Animation Controller */
 
 .animationController{
@@ -26,7 +31,7 @@ a {
   justify-content: center;
   height: 4rem;
   right: 1.5rem;
-  z-index: 1000;
+  z-index: 1001;
   cursor: pointer;
   box-shadow: 0px -1px 20px -6px rgba(0,0,0,0.75);
   -webkit-box-shadow: 0px -1px 20px -6px rgba(0,0,0,0.75);
@@ -70,9 +75,15 @@ ion-icon{
 .separator{
   padding: 1.5rem;
 }
-.navContainer ion-icon{
+.navContainer {
   color: white;
   font-size: 2rem;
+}
+.navContainer ion-icon{
+  color: white;
+  display: flex;
+  font-size: 2rem;
+  align-items: center;
 }
 .navContainer{
   display: flex;
@@ -276,5 +287,36 @@ input[type="checkbox"]:disabled {
   }
   .block-quote{
     font-size: 1.3rem;
+  }
+}
+
+/* Code for the social media */
+.footer_media{
+  display: flex;
+  align-items: center;
+  width: 20rem;
+  margin: 0 auto 2rem auto;
+  justify-content: space-evenly;
+}
+.footer_media ion-icon{
+  color: black;
+  font-size: 2.2rem;
+  transition: .3s;
+}
+.footer_media ion-icon:nth-child(1):hover{
+  color: rgb(22, 76, 255);
+}
+.footer_media ion-icon:nth-child(2):hover{
+  color: rgb(22, 162, 255);
+}
+.footer_media ion-icon:nth-child(3):hover{
+  color: rgb(255, 22, 22);
+}
+@media(max-width: 28.125em){
+  .footer_media{
+    width: 100%;
+  }
+  .animationController{
+    right: .5rem;
   }
 }
