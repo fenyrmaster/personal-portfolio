@@ -645,6 +645,12 @@
   margin: 2rem 4rem;
   font-size: 2rem;
   margin-right: 25vh; }
+  .project_description_img {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: .3rem dashed orange; }
 
 .project_data {
   margin-bottom: 1.3rem; }

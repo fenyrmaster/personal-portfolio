@@ -1,8 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import isHotkey from "is-hotkey";
-import { Editable, withReact, useSlate, Slate } from "slate-react";
+import imageExtensions from 'image-extensions'
+import { Editable, withReact, ReactEditor, useSelected, useSlate, useFocused, Slate, useSlateStatic } from "slate-react";
 import { Editor, Transforms, createEditor } from "slate";
 import { withHistory } from "slate-history";
+import { css } from "@emotion/css";
+import isUrl from "is-url";
+import Swal from "sweetalert2";
 
 import { Button, Icon, Toolbar } from "./LexicalHelpers";
 
@@ -37,6 +41,7 @@ const RichTextExample = ({ createProject, setCreateProject }) => {
         <BlockButton format="block-quote" icon="format_quote" />
         <BlockButton format="numbered-list" icon="format_list_numbered" />
         <BlockButton format="bulleted-list" icon="format_list_bulleted" />
+        <InsertImageButton />
       </Toolbar>
       <Editable
         className={"editorSlate"}
@@ -102,6 +107,7 @@ const isMarkActive = (editor, format) => {
 };
 
 const Element = ({ attributes, children, element }) => {
+  const props = { attributes, children, element };
   switch (element.type) {
     case "block-quote":
       return <blockquote {...attributes}>{children}</blockquote>;
@@ -115,6 +121,8 @@ const Element = ({ attributes, children, element }) => {
       return <li {...attributes}>{children}</li>;
     case "numbered-list":
       return <ol {...attributes}>{children}</ol>;
+    case 'image':
+      return <Image {...props} />
     default:
       return <p {...attributes}>{children}</p>;
   }
@@ -169,5 +177,99 @@ const MarkButton = ({ format, icon }) => {
     </Button>
   );
 };
+
+const InsertImageButton = () => {
+  const editor = useSlateStatic();
+
+  return (
+    <Button
+      onClick={event => {
+        let url;
+        event.preventDefault()
+        Swal.fire({
+          title: 'Alert',
+          text: `Enter the Image URL`,
+          icon: "info",
+          input: "text",
+          confirmButtonColor: '#ffcc00',
+          showCancelButton: true,
+          confirmButtonText: 'Done',
+          cancelButtonText: "Cancel",
+          cancelButtonColor: "#ff0000"
+        }).then((result) => {
+          if(result.isConfirmed){
+              url = result.value;
+          }
+          if (url && !isImageUrl(url)) {
+            return Swal.fire({
+              title: "Error",
+              icon: "error",
+              text: "The specified url is not an image",
+              confirmButtonColor: "#ffcc00"
+          });
+          }
+          url && insertImage(editor, url)
+        });
+      }}
+    >
+      <Icon>image</Icon>
+    </Button>
+  )
+}
+
+const insertImage = (editor, url) => {
+  const text = { text: '' }
+  const image = { type: 'image', url, children: [text] }
+  Transforms.insertNodes(editor, image)
+}
+
+const isImageUrl = url => {
+  if (!url) return false
+  if (!isUrl(url)) return false
+  const ext = new URL(url).pathname.split('.').pop()
+  return imageExtensions.includes(ext)
+}
+
+const Image = ({ attributes, children, element }) => {
+  const editor = useSlateStatic()
+  const path = ReactEditor.findPath(editor, element)
+
+  const selected = useSelected()
+  const focused = useFocused()
+  return (
+    <div {...attributes}>
+      {children}
+      <div
+        contentEditable={false}
+        className={css`
+          position: relative;
+        `}
+      >
+        <img
+          src={element.url}
+          className={css`
+            display: block;
+            max-width: 100%;
+            max-height: 20em;
+            box-shadow: ${selected && focused ? '0 0 0 3px #B4D5FF' : 'none'};
+          `}
+        />
+        <Button
+          active
+          onClick={() => Transforms.removeNodes(editor, { at: path })}
+          className={css`
+            display: ${selected && focused ? 'inline' : 'none'};
+            position: absolute;
+            top: 0.5em;
+            left: 0.5em;
+            background-color: white;
+          `}
+        >
+          <Icon>delete</Icon>
+        </Button>
+      </div>
+    </div>
+  )
+}
 
 export default RichTextExample;

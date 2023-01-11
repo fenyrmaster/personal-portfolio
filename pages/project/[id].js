@@ -139,7 +139,11 @@ export default function ProjectsAll({project}){
                     <Link href={project.liveUrl}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Live website.</span></a></Link>
                 </div>
                 <div  className={styles.project_description}>
-                    { project.text.map(content => (content.type === "bulleted-list" || content.type === "numbered-list") ? <ul className={content.type}>{content.children.map(content2 => content2.children.map(content3 => <li className={`${content3.code ? "code" : ""} ${content3.italic ? "italic" : ""} ${content3.underline ? "underline" : ""} ${content3.bold ? "bold" : ""}`}>{content3.text}</li>) )}</ul> : <p className={content.type}>{content.children.map(el => <span className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""}`}>{el.text}</span>)}</p>) }
+                    { project.text.map(content => (content.type === "bulleted-list" || content.type === "numbered-list") 
+                    ? <ul className={content.type}>{content.children.map(content2 => content2.children.map(content3 => <li className={`${content3.code ? "code" : ""} ${content3.italic ? "italic" : ""} ${content3.underline ? "underline" : ""} ${content3.bold ? "bold" : ""}`}>{content3.text}</li>) )}</ul>
+                    : (content.type === "image") 
+                    ? <img className={styles.project_description_img} src={content.url} />
+                    : <p className={content.type}>{content.children.map(el => <span className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""}`}>{el.text}</span>)}</p>) }
                     <div className={`${styles.subtitleWrapper} ${styles.subtitleCustom2} custom1`}>
                         <h2 className={styles.subtitle}>gallery</h2> 
                     </div>

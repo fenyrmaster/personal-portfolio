@@ -55,6 +55,13 @@
         margin: 2rem 4rem;
         font-size: 2rem;
         margin-right: 25vh;
+        &_img{
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: .3rem dashed orange;
+        }
     }
     &_data{
         margin-bottom: 1.3rem;
