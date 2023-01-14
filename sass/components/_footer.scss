@@ -4,6 +4,7 @@
     align-items: center;
     background-color: rgb(255, 237, 203);
     position: relative;
+    border-top: solid .1rem grey;
     z-index: 1000;
     &_image{
         margin: 2rem;

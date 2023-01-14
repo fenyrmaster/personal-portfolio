@@ -98,11 +98,11 @@
 @media(max-width: 68.75em){
     .project{
         &_floater{
-            position: relative;
+            position: relative !important;
             visibility: visible;
             opacity: 1;
             margin: -12rem 0 0 0;
-            top: 0;
+            top: 0 !important;
             left: 0;
             transform: translate(0, 0);
             padding-top: 13rem;

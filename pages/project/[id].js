@@ -37,7 +37,9 @@ export default function ProjectsAll({project}){
 
     const [ parallaxValue, setParallaxValue ] = useState("380px");
     const [ floaterAppear, setFloaterAppear ] = useState(false);
+    const [ end, setEnd ] = useState(false);
     const floaterRef = useRef(null);
+    const footerRef = useRef(null);
 
     const Details = styled.div`
         position: absolute;
@@ -83,9 +85,18 @@ export default function ProjectsAll({project}){
     }
     const dataFixed = () => {
         let offset = floaterRef.current?.clientHeight - 180;
+        let stickness = footerRef.current?.clientHeight + 250;
+        console.log(stickness, window.pageYOffset);
         if(window.pageYOffset > offset){
             setFloaterAppear(true);
-        } else if(window.pageYOffset < offset){
+        }
+        if(window.pageYOffset > stickness){
+            setEnd(true);
+        }
+        if(window.pageYOffset < stickness){
+            setEnd(false);
+        }
+        if(window.pageYOffset < offset){
             setFloaterAppear(false);
         }
     }
@@ -106,7 +117,7 @@ export default function ProjectsAll({project}){
             <ProjectDetails ref={floaterRef}>
                 <Details>
                     <h1 className={styles.project_title}>{project.nombre}</h1>
-                    <div className={styles.project_extras}>
+                    <div  className={styles.project_extras}>
                         <div className={styles.project_text}>
                             <ion-icon className={"iconProject"} name="construct-sharp"></ion-icon>
                             <p className={styles.project_extras_paragraph}>{project.focus}</p>
@@ -120,7 +131,10 @@ export default function ProjectsAll({project}){
             </ProjectDetails>
             <section className={styles.project_details}>
                 <div className={styles.project_separator}></div>
-                <div className={`${styles.project_floater} ${floaterAppear ? styles.floaterFixed : ""}`}>
+                <div style={{
+                    position: end ? "absolute" : "fixed",
+                    top: end ? `${footerRef.current?.clientHeight}px` : ""
+                }} className={`${styles.project_floater} ${floaterAppear ? styles.floaterFixed : ""}`}>
                     <div className={styles.project_data}>
                         <p className={styles.project_data_paragraph}>Project Name:</p>
                         <p className={styles.project_data_paragraph2}>{project.nombre}</p>
@@ -138,7 +152,7 @@ export default function ProjectsAll({project}){
                     <Link href={project.githubUrl}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>github Repository.</span></a></Link>
                     <Link href={project.liveUrl}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Live website.</span></a></Link>
                 </div>
-                <div  className={styles.project_description}>
+                <div ref={footerRef} className={styles.project_description}>
                     { project.text.map(content => (content.type === "bulleted-list" || content.type === "numbered-list") 
                     ? <ul className={content.type}>{content.children.map(content2 => content2.children.map(content3 => <li className={`${content3.code ? "code" : ""} ${content3.italic ? "italic" : ""} ${content3.underline ? "underline" : ""} ${content3.bold ? "bold" : ""}`}>{content3.text}</li>) )}</ul>
                     : (content.type === "image") 
@@ -150,6 +164,8 @@ export default function ProjectsAll({project}){
                     <div className={styles.masonry}>
                         { project.gallery.map(pic => <img className={styles.masonry_img} src={pic}/>) }
                     </div>
+                    <Link href={"/"}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to main menu</span></a></Link>
+                    <Link href={"/all-projects"}><a className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to all projects</span></a></Link>
                 </div>
             </section>
             <Footer/>
