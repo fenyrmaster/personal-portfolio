@@ -88,6 +88,11 @@
     visibility: visible;
     opacity: 1;
 }
+.projectAll{
+    overflow-y:scroll;
+    overflow-x: hidden;
+    transform-style: preserve-3d;
+}
 @media(max-width: 87.5em){
     .project{
         &_description{

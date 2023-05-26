@@ -18,6 +18,12 @@ a {
   display: inline-block !important;
 }
 /* Animation Controller */
+.react-parallax-content{
+  height: 100vh;
+  background: linear-gradient(to right bottom, rgba(255, 80, 27, 0.807), rgba(255, 136, 0, 0.774));
+  background-position: center center;
+  background-size: cover;
+}
 
 .animationController{
   position: fixed;
@@ -210,6 +216,7 @@ input[type="checkbox"]:disabled {
   color: var(--form-control-disabled);
   cursor: not-allowed;
 }
+
 
 /* Color of font when is front-end or back-end */
 .Front-end{

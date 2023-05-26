@@ -24,7 +24,7 @@ export default function Layout({children}){
                 <nav className={styles.adminNav}>
                     <div className={`navContainer ${url === "blog" && "selected"}`}>
                         <ion-icon name="golf-sharp"></ion-icon>
-                        <Link href="/blog"><a className={styles.btnAdminNav}><span className={styles.adminNavText}>Blog</span></a></Link>
+                        <Link href="/admin/blog"><a className={styles.btnAdminNav}><span className={styles.adminNavText}>Blog</span></a></Link>
                     </div>
                     <div className={`navContainer ${url === "skills" && "selected"}`}>
                         <ion-icon name="code-slash-sharp"></ion-icon>
