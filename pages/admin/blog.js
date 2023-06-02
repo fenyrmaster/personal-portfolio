@@ -20,7 +20,7 @@ export async function getStaticProps(){
 
 const BlogAdmin = ({entriesAPI}) => {
 
-    const { entries, createEntry, setCreateEntry, setEntries } = useContext(BlogContext);
+    const { entries, createEntry, setCreateEntry, setEntries, newEntryDB } = useContext(BlogContext);
     useEffect(() => {
         setEntries(entriesAPI);
     }, []);
@@ -50,6 +50,34 @@ const BlogAdmin = ({entriesAPI}) => {
         setEditEntry(false);
     }
 
+    const createNewEntry = async e => {
+        e.preventDefault();
+        setFormLoading(true);
+        if(editEntry){
+            //if(createProject.nombre === "" || createProject.focus === "" || createProject.usage === "" || createProject.completionDate === "" || createProject.technologies.length === 0 || createProject.githubUrl === "" || createProject.liveUrl === ""){
+            //    setFormLoading(false);
+            //    return Swal.fire({
+            //        title: "Error",
+            //        icon: "error",
+            //        text: "All fields are required",
+            //        confirmButtonColor: "#ffcc00"
+            //    });
+            //}
+            //await editarProyecto(createProject, setNewProject, setFormLoading, setEditProject, projectId);
+        } else {
+            if(createEntry.nombre === "" || createEntry.image === null || createEntry.intro === "" || createEntry.time === "" || createEntry.postDate === ""){
+                setFormLoading(false);
+                return Swal.fire({
+                    title: "Error",
+                    icon: "error",
+                    text: "All fields are required",
+                    confirmButtonColor: "#ffcc00"
+                });
+            }
+            await newEntryDB(createEntry, setNewEntry, setFormLoading);
+        }
+    }
+
     return(
         <Layout>
             { !newEntry ? 
@@ -57,12 +85,12 @@ const BlogAdmin = ({entriesAPI}) => {
                     <button onClick={() => setNewEntry(true)} className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>Add new blog entry</span></button>
                 </div>
                 <section className={styles.adminProjectContainer}>
-                    { entries.length !== 0 ? entries.map(project => <AdminProject setEditName={setEditName} prepareEdit={prepareEdit} setProjectDelete={setProjectDelete} deletion={setDeleteAsk} key={project._id} project={project}/>) : <p className={styles.textEmpty}>There are no entries, start by creating one...</p> }
+                    { entries.length !== 0 ? entries.map(project => <p>hola</p>) : <p className={styles.textEmpty}>There are no entries, start by creating one...</p> }
                 </section>
             </> 
             : <>
                 <h2 className={styles.newSkillTitle}>{ editEntry ? `Editing entry ${editName}` : "Create a new blog entry"}</h2>
-                <form className={styles.newSkillForm}>
+                <form onSubmit={e => createNewEntry(e)} className={styles.newSkillForm}>
                     <div className={styles.newSkillForm_field}>
                         <label className={styles.newSkillForm_label}>Entry Title:</label>
                         <input name="nombre" value={createEntry.nombre} onChange={e => setCreateEntry({ ...createEntry, [e.target.name]: e.target.value })} className={styles.newSkillForm_input}/>

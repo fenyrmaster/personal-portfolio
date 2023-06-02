@@ -24,10 +24,50 @@ export const BlogProvider = ({children}) => {
     // Used to get all the blog entries of the portfolio
     const getEntries = async () => {
         try{
-            const proyectos = await clienteAxios.get("/projects");
-            setProjects(proyectos.data.data);
+            const entries = await clienteAxios.get("/blog");
+            setEntries(entries.data.data);
         } catch(error){
             console.log(error);
+        }
+    }
+
+    const newEntryDB = async (data, setNewSkill, setFormLoading) => {
+        try{
+            let form = new FormData();
+            let newText = JSON.stringify(data.text);
+            form.append("nombre", data.nombre);
+            form.append("intro", data.intro);
+            form.append("time", data.time);
+            form.append("postDate", data.postDate);
+            form.append("imagenPortada", data.image);
+            form.append("text", newText);
+            await clienteAxios.post("/blog", form);
+            Swal.fire({
+                title: "Success",
+                text: "Project created successfully",
+                icon: "success",
+                confirmButtonColor: "#ffcc00"
+            });
+            setFormLoading(false);
+            setNewSkill(false);
+            getEntries();
+            setCreateEntry({
+                nombre: "",
+                intro: "",
+                time: "",
+                image: null,
+                postDate: "",
+                text: [  {
+                    type: "paragraph",
+                    children: [
+                      { text: "Its time to write some text..." }
+                    ]
+                  }],
+            })
+        } catch(error){
+            setFormLoading(false);
+            console.error(error);
+            
         }
     }
 
@@ -39,7 +79,8 @@ export const BlogProvider = ({children}) => {
             createEntry,
             //functions
             setEntries,
-            setCreateEntry
+            setCreateEntry,
+            newEntryDB
         }}>
             {children}
         </BlogContext.Provider>
