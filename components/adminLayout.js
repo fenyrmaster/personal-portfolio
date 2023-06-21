@@ -36,7 +36,7 @@ export default function Layout({children}){
                     </div>
                     <div className={"navContainer"}>
                         <ion-icon name="trophy-sharp"></ion-icon>
-                        <Link href="/blog"><a className={styles.btnAdminNav}><span className={styles.adminNavText}>Awards</span></a></Link>
+                        <Link href="/blog"><a className={styles.btnAdminNav}><span className={styles.adminNavText}>Certificates</span></a></Link>
                     </div>
                 </nav>
                 <main className={styles.childContent}>{children}</main>

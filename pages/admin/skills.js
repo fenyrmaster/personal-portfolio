@@ -127,7 +127,7 @@ export default function Skills({skillset}){
                         <input onChange={e => setSkill({ ...skill, image: e.target.files[0] })} className={styles.newSkillForm_file} type="file"/>
                     </div>
                 <div className={styles.newSkillBtns}>
-                    <button onClick={() => {setNewSkill(false); setSkillLevel(false);}} className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>Cancel creation</span></button>
+                    <button onClick={() => {setNewSkill(false); setSkillLevel(false);}} className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>Cancel action</span></button>
                     { !formLoading 
                     ?<button type="submit" className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>{skillLevel ? `Edit Skill ${editName !== 0 && editName}` : "Create New Skill"}</span></button>                      
                     :<button disabled type="submit" className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>{skillLevel ? "Editing..." : "Creating..."}</span></button> }

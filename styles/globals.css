@@ -78,6 +78,11 @@ ion-icon{
   color: rgb(255, 98, 0);
   font-size: 1.5rem;
 }
+
+.stats_icon ion-icon{
+  color: rgb(37, 37, 37);
+  font-size: 1.2rem;
+}
 .separator{
   padding: 1.5rem;
 }
@@ -278,6 +283,12 @@ input[type="checkbox"]:disabled {
 }
 .numbered-list{
   list-style-type: decimal;
+}
+
+@media(max-width: 71.875em){
+  .navContainer:nth-child(1){
+    margin: 0.5rem 0;
+  }
 }
 
 @media(max-width: 37.5em){

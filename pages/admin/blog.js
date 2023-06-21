@@ -1,9 +1,8 @@
 import Layout from "../../components/adminLayout";
 import styles from "../../styles/App.module.css";
 import { useState, useContext, useEffect } from "react";
-import AdminProject from "../../components/adminProjects";
+import EntryAdmin from "../../components/entryAdmin";
 import LexicalFormat from "../../components/LexicalFormat";
-import SkillSelection from "../../components/skillSelection";
 import axios from "axios";
 import Swal from "sweetalert2";
 import BlogContext from "../../context/BlogProvider";
@@ -20,7 +19,7 @@ export async function getStaticProps(){
 
 const BlogAdmin = ({entriesAPI}) => {
 
-    const { entries, createEntry, setCreateEntry, setEntries, newEntryDB } = useContext(BlogContext);
+    const { entries, createEntry, setCreateEntry, setEntries, newEntryDB, entryDelete, setEntryDelete, deleteEntry, editEntryDB } = useContext(BlogContext);
     useEffect(() => {
         setEntries(entriesAPI);
     }, []);
@@ -29,11 +28,36 @@ const BlogAdmin = ({entriesAPI}) => {
     const [ formLoading, setFormLoading ] = useState(false);
     const [ deleteAsk, setDeleteAsk ] = useState(false);
     const [ editEntry, setEditEntry ] = useState(false);
-    const [ projectId, setProjectId ] = useState("");
+    const [ entryId, setEntryId ] = useState("");
     const [ editName, setEditName ] = useState("");
+
+    useEffect(() => {
+        if(deleteAsk){
+            Swal.fire({
+                title: 'Alert',
+                text: `¿Are you sure do you want to delete the entry "${entryDelete.nombre}"?`,
+                icon: "question",
+                confirmButtonColor: '#ffcc00',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: "No",
+                cancelButtonColor: "#ff0000"
+              }).then((result) => {
+                if(result.isDismissed){
+                    setDeleteAsk(false);
+                    setEntryDelete({});
+                }
+                if(result.isConfirmed){
+                    setDeleteAsk(false);
+                    deleteEntry();
+                }
+              })
+        }
+    }, [deleteAsk]);
 
     const manageCancel = () => {
         setNewEntry(false);
+        setEditName("");
         setCreateEntry({
             nombre: "",
             intro: "",
@@ -50,20 +74,35 @@ const BlogAdmin = ({entriesAPI}) => {
         setEditEntry(false);
     }
 
+    const prepareEdit = entry => {
+        setNewEntry(true);
+        setEditEntry(true);
+        setEntryId(entry._id);
+        let date = entry.postDate.split("T")[0];
+        setCreateEntry({
+            nombre: entry.nombre,
+            image: null,
+            time: entry.time,
+            intro: entry.intro,
+            text: entry.text,
+            postDate: date,
+        });
+    }
+
     const createNewEntry = async e => {
         e.preventDefault();
         setFormLoading(true);
         if(editEntry){
-            //if(createProject.nombre === "" || createProject.focus === "" || createProject.usage === "" || createProject.completionDate === "" || createProject.technologies.length === 0 || createProject.githubUrl === "" || createProject.liveUrl === ""){
-            //    setFormLoading(false);
-            //    return Swal.fire({
-            //        title: "Error",
-            //        icon: "error",
-            //        text: "All fields are required",
-            //        confirmButtonColor: "#ffcc00"
-            //    });
-            //}
-            //await editarProyecto(createProject, setNewProject, setFormLoading, setEditProject, projectId);
+            if(createEntry.nombre === "" || createEntry.intro === "" || createEntry.time === "" || createEntry.postDate === ""){
+                setFormLoading(false);
+                return Swal.fire({
+                    title: "Error",
+                    icon: "error",
+                    text: "All fields are required",
+                    confirmButtonColor: "#ffcc00"
+                });
+            }
+            await editEntryDB(setNewEntry, setFormLoading, setEditEntry, entryId);
         } else {
             if(createEntry.nombre === "" || createEntry.image === null || createEntry.intro === "" || createEntry.time === "" || createEntry.postDate === ""){
                 setFormLoading(false);
@@ -84,8 +123,8 @@ const BlogAdmin = ({entriesAPI}) => {
             <>  <div className={styles.skillAdd}>
                     <button onClick={() => setNewEntry(true)} className={`${styles.btn1} ${styles.adminBtn}`}><span className={styles.btnText}>Add new blog entry</span></button>
                 </div>
-                <section className={styles.adminProjectContainer}>
-                    { entries.length !== 0 ? entries.map(project => <p>hola</p>) : <p className={styles.textEmpty}>There are no entries, start by creating one...</p> }
+                <section className={styles.adminEntriesContainer}>
+                    { entries.length !== 0 ? entries.map(entry => <EntryAdmin setEditName={setEditName} prepareEdit={prepareEdit} setDeleteAsk={setDeleteAsk} key={entry._id} entry={entry}/>) : <p className={styles.textEmpty}>There are no entries, start by creating one...</p> }
                 </section>
             </> 
             : <>
