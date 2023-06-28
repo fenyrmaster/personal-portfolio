@@ -51,7 +51,7 @@
     background-color: rgb(255, 250, 238);
 }
 .section3{
-    padding: 8rem 0 2rem 0;
+    padding: 8rem 0 8rem 0;
     margin-top: -20rem;
     background-color: rgb(255, 242, 221);
     clip-path: polygon(50% 10%, 100% 0, 100% 100%, 0 100%, 0 0);
@@ -62,6 +62,15 @@
     background-color: #fdad00;
     color: white;
 }
+
+.section5{
+    padding: 8rem 0 5rem 0;
+    margin-top: -12rem;
+    background-color: rgb(255, 228, 185);
+    clip-path: polygon(50% 10%, 100% 0, 100% 100%, 0 100%, 0 0);
+    position: relative;
+}
+
 .subtitleCustom2{
     padding-bottom: .5rem;
     padding-top: 7rem;
@@ -69,6 +78,9 @@
 @media(max-width: 75em){
     .section2{
         margin-top: -2rem;
+    }
+    .section5{
+        clip-path: polygon(50% 5%, 100% 0, 100% 100%, 0 100%, 0 0);
     }
 }
 @media(max-width: 71.875em){

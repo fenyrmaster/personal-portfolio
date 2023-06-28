@@ -33,7 +33,7 @@ const EntryAdmin = ({entry, setDeleteAsk, prepareEdit, setEditName}) => {
         </div>
         <div className={styles.adminProject_Buttons}>
             <button onClick={() => {setEditName(entry.nombre); prepareEdit(entry)}} className={styles.skillEdit}>Edit</button>
-            <Link href={``}><a className={styles.projectView} target="_blank">View</a></Link>
+            <Link href={`/entry/${entry.slug}`}><a className={styles.projectView} target="_blank">View</a></Link>
             <button onClick={() => {setEntryDelete(entry); setDeleteAsk(true)}} className={styles.skillDelete}>Delete</button>
         </div>
     </div>

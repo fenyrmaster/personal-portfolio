@@ -11,6 +11,7 @@ import axios from "axios";
 import PublicContext from "../context/PublicProvider";
 import { useEffect, useRef, useState, useContext } from "react";
 import Footer from "../components/footer";
+import BlogIndex from "../components/blogIndex";
 
 // Import Swiper styles
 import "swiper/css";
@@ -29,15 +30,19 @@ export async function getStaticProps(){
   // Fetch the projects
   const project = await axios.get(`http://localhost:4000/api/projects?limit=6&sort=-completionDate`);
   const projectsAll = project.data.data;
+  // Finally, fetch 5 blog entries
+  const entries = await axios.get(`http://localhost:4000/api/blog?limit=6&sort=-postDate`);
+  const entriesAll = entries.data.data;
   return{
       props: {
           projectsAll,
-          skillset
+          skillset,
+          entriesAll
       }
   }
 }
 
-export default function Home({skillset, projectsAll}) {
+export default function Home({skillset, projectsAll, entriesAll}) {
   
   const { animationActive, setAnimationActive } = useContext(PublicContext);
   const { enviarEmails } = useContext(ProjectContext);
@@ -158,7 +163,13 @@ export default function Home({skillset, projectsAll}) {
         </div>
         <Projects projectsHeight={projectsHeight} projectsWidth={projectsWidth} allProjects={projectsAll} mainPage={true}/>
       </section>
-      <section id="contact-form" className={styles.section4}>
+      <section className={styles.section5}>
+        <div className={styles.subtitleWrapper}>
+          <h2 className={styles.subtitle}>My blog</h2>  
+        </div>
+        <BlogIndex entries={entriesAll}/>
+      </section>
+      <section  id="contact-form" className={styles.section4}>
         <div className={styles.contact_container}>
           <div className={styles.subtitleWrapper}>
           <h2 className={styles.subtitle}>Contact me</h2>  

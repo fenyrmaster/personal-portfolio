@@ -5,6 +5,17 @@
         text-transform: uppercase;
         font-family: "Ubuntu Condensed", sans-serif;
         text-align: center;
+        position: relative;
+        &::after{
+            content: "";
+            width: 80%;
+            height: .1rem;
+            background-color: rgb(255, 109, 24);
+            position: absolute;
+            bottom: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     }
     &_extras{
         display: flex;

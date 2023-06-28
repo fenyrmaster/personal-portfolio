@@ -17,6 +17,44 @@ a {
   padding: .8rem 3rem;
   display: inline-block !important;
 }
+.blog_text{
+  font-size: 1.3rem;
+  font-family: "Ubuntu", sans-serif;
+  text-align: center;
+  margin: .5rem auto 0 auto;
+  padding-bottom: 1rem;
+  width: 90%;
+}
+.blog_data{
+  display: flex;
+  width: 100%;
+  margin-top: .7rem;
+  font-size: 1.4rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-family: "Oswald", sans-serif;
+  
+}
+.blog_data div{
+  flex-basis: 32%;
+  justify-content: center;
+}
+
+
+@media(max-width: 68.75em){
+  .blog_data{
+    flex-direction: column-reverse;
+  }
+  .blog_text{
+    width: 100%;
+  }
+}
+
+@media(max-width: 34.375em){
+  .blog_data{
+    font-size: 1.1rem;
+  }
+}
 /* Animation Controller */
 .react-parallax-content{
   height: 100vh;

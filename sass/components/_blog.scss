@@ -1,0 +1,177 @@
+.blogIndex{
+    &_container{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(30rem, max-content);
+        grid-gap: 2rem;
+        margin: 0 10rem;
+    }
+    &_entries{
+        background-color: white;
+        height: 100%;
+    }
+}
+
+.blogEntry{
+    &_bigCard{
+        border-radius: 2rem;
+        border-bottom-left-radius: .5rem;
+        border-bottom-right-radius: .5rem;
+        transition: .3s;
+        &:hover{
+            transform: scale(1.05);
+        }
+        &_img{
+            width: 100%;
+            height: 15rem;
+            border-top-left-radius: 2rem;
+            border-top-right-radius: 2rem;
+            object-fit: cover;
+            transition: .3s ease;
+            box-shadow: 4px 2px 29px -12px rgba(0,0,0,0.75);
+            -webkit-box-shadow: 4px 2px 29px -12px rgba(0,0,0,0.75);
+            -moz-box-shadow: 4px 2px 29px -12px rgba(0,0,0,0.75);
+        }
+        &_title{
+            margin: 0 0 .5rem 0;
+            font-size: 1.4rem;
+            font-family: "Oswald", sans-serif;
+        }
+        &_intro{
+            font-family: "Ubuntu", sans-serif;
+        }
+        &_mainContent{
+            padding: 1rem 1rem 2.5rem 1rem;
+            background-color: white; 
+            margin-top: -.25rem;
+            border: .1rem solid rgb(255, 79, 34);
+            border-top-width: .4rem;
+            transition: .3s ease;
+            border-bottom-left-radius: .5rem;
+            border-bottom-right-radius: .5rem;
+            position: relative;
+            box-shadow: 4px 2px 29px -12px rgba(0,0,0,0.75);
+            -webkit-box-shadow: 4px 2px 29px -12px rgba(0,0,0,0.75);
+            -moz-box-shadow: 4px 2px 29px -12px rgba(0,0,0,0.75);
+        }
+        &_quickInfo{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            &_data{
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+            }
+            &_text{
+                margin-left: .3rem;
+                font-family: "Oswald", sans-serif;
+            }
+        }
+        &_btn{
+            background-color: rgb(255, 79, 34);
+            margin: 0;
+            position: absolute;
+            color: white;
+            font-family: "Oswald", sans-serif;
+            font-weight: 800;
+            bottom: 0;
+            left: 0;
+            padding: .5rem 1rem;
+            border-top-right-radius: 2rem;
+            border-bottom-left-radius: .4rem;
+            font-size: 1.2rem;
+            transition: .3s;
+            &:hover{
+                background-color: rgb(255, 155, 61);
+            }
+        }
+    }
+}
+
+.blog{
+    &_details{
+        display: flex;
+        position: relative;
+        margin-top: -15rem;
+        padding-top: 15rem;
+        background-color: rgb(255, 251, 234);
+        justify-content: center;
+    }
+    &_description{
+        flex-basis: 50%;
+        font-size: 2rem;
+        margin: 2rem 25vh;
+        &_img{
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: .3rem dashed orange;
+        }
+    }
+    &_separator{
+        display: none;
+        flex-basis: 10%;
+        margin: 0 6rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Media queries */
+@media(max-width: 100em){
+    .blogIndex{
+        &_container{
+            margin: 0 4rem;
+        }
+    }
+}
+
+@media(max-width: 87.5em){
+    .blog{
+        &_description{
+            margin: 2rem 10vh;
+            flex-basis: 70%;
+        }
+    }
+}
+
+@media(max-width: 75em){
+    .blogIndex{
+        &_container{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+@media(max-width: 50em){
+    .blogIndex{
+        &_container{
+            margin: 0 1rem;
+        }
+    }
+    .blog{
+        &_description{
+            margin: 2rem 5vh;
+            flex-basis: 100%;
+        }
+    }
+}
+
+@media(max-width: 43.75em){
+    .blogIndex{
+        &_container{
+            grid-template-columns: 1fr;
+            grid-auto-rows: max-content;
+        }
+    }
+}
+
+@media(max-width: 32em){
+    .blog{
+        &_description{
+            margin: 2rem 2vh;
+        }
+    }
+}
+/* End Of Media queries */

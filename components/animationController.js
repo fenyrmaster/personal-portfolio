@@ -10,7 +10,7 @@ const AnimationController = () => {
         if(!primerPregunta){
             Swal.fire({
                 title: '¿Do you want to activate animations?',
-                text: "Animations takes a lot of resources from your device, only activate animations if your device is very capable.",
+                text: "Animations takes a lot of resources from your device and you should only activate animations if your device is very capable.",
                 icon: "question",
                 confirmButtonColor: '#ffcc00',
                 showCancelButton: true,

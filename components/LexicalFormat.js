@@ -187,7 +187,7 @@ const InsertImageButton = () => {
         let url;
         event.preventDefault()
         Swal.fire({
-          title: 'Alert',
+          title: 'Add image',
           text: `Enter the Image URL`,
           icon: "info",
           input: "text",
