@@ -64,6 +64,11 @@
 .customChange2{
     width: max-content;
 }
+.customChange3{
+    display: flex;
+    width: max-content;
+    margin: 2rem auto 1rem auto;
+}
 @media(max-width: 68.75em){
     .customChange2{
         margin: 2rem auto;

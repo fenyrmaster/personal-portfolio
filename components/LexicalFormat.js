@@ -42,6 +42,7 @@ const RichTextExample = ({ createProject, setCreateProject }) => {
         <BlockButton format="numbered-list" icon="format_list_numbered" />
         <BlockButton format="bulleted-list" icon="format_list_bulleted" />
         <InsertImageButton />
+        <InsertLink/>
       </Toolbar>
       <Editable
         className={"editorSlate"}
@@ -129,6 +130,7 @@ const Element = ({ attributes, children, element }) => {
 };
 
 const Leaf = ({ attributes, children, leaf }) => {
+  const props = {attributes, children, leaf};
   if (leaf.bold) {
     children = <strong>{children}</strong>;
   }
@@ -143,6 +145,11 @@ const Leaf = ({ attributes, children, leaf }) => {
 
   if (leaf.underline) {
     children = <u>{children}</u>;
+  }
+
+  if(leaf.link){
+    console.log(props);
+    children = <LinkSlate {...props}/>
   }
 
   return <span {...attributes}>{children}</span>;
@@ -217,10 +224,75 @@ const InsertImageButton = () => {
   )
 }
 
+const InsertLink = () => {
+  const editor = useSlateStatic();
+
+  return (
+    <Button
+      onClick={event => {
+        let url, text;
+        event.preventDefault()
+        Swal.fire({
+          title: 'Add link',
+          text: `Enter the URL you want to use`,
+          icon: "info",
+          html:
+          '<input id="text" class="swal2-input" placeholder="The text that will be displayed">' +
+          '<input id="url" class="swal2-input" placeholder="The url of the text">',
+          preConfirm: () => {
+            return [
+              document.getElementById('text').value,
+              document.getElementById('url').value
+            ]
+          },
+          confirmButtonColor: '#ffcc00',
+          showCancelButton: true,
+          confirmButtonText: 'Done',
+          cancelButtonText: "Cancel",
+          cancelButtonColor: "#ff0000"
+        }).then((result) => {
+          if(result.isConfirmed){
+            text = document.getElementById("text").value;
+            url = document.getElementById("url").value;
+            if (!url || !isUrl(url) || !text) {
+              return Swal.fire({
+                title: "Error",
+                icon: "error",
+                text: "The specified url is not a link",
+                confirmButtonColor: "#ffcc00"
+              });
+            }
+            url && insertNewLink(editor, text, url)
+          }
+        });
+      }}
+    >
+      <Icon>link</Icon>
+    </Button>
+  )
+}
+
 const insertImage = (editor, url) => {
   const text = { text: '' }
   const image = { type: 'image', url, children: [text] }
   Transforms.insertNodes(editor, image)
+}
+
+const linkNode = (url, texto) => {
+  const link = {
+    children: [{text: texto, link: true, url}],
+    type: "paragraph"
+  }
+  return link
+}
+
+const insertNewLink = (editor, text, url) => {
+  if(!url || !text) return;
+
+  const link = linkNode(url, text);
+
+  ReactEditor.focus(editor);
+  Transforms.insertNodes(editor, link, { select: true });
 }
 
 const isImageUrl = url => {
@@ -269,6 +341,19 @@ const Image = ({ attributes, children, element }) => {
         </Button>
       </div>
     </div>
+  )
+}
+
+const LinkSlate = ({ attributes, children, leaf }) => {
+  return(
+    <a className={css`
+      text-decoration: underline;
+      color: rgb(255, 115, 0);
+      `}
+     {...attributes}
+      href={leaf.url}>
+      {children}
+    </a>
   )
 }
 

@@ -78,6 +78,11 @@ export default function ProjectsAll({projectsAll}){
                 <div className={`${styles.subtitleWrapper} ${styles.subtitleCustom2}`}>
                   <h2 className={styles.subtitle}>All my projects</h2>  
                 </div>
+                <p className={"tips"}>
+                    <ion-icon name="bulb"></ion-icon>
+                    {projectsWidth > 1200 ? "Tip: Hover over the images to learn more about the projects " : "Tip: Tap on the images to learn more about the projects "}
+                    <ion-icon name="bulb"></ion-icon>
+                </p>
                 <form className={styles.projectForm}>
                     <Select onChange={(e) => cambiarCategoria(e)} value={selectValue} className={`${styles.projectForm_select}`}>
                         <option>All Projects</option>

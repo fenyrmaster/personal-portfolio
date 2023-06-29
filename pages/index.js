@@ -90,6 +90,7 @@ export default function Home({skillset, projectsAll, entriesAll}) {
   useEffect(() => {
     window.addEventListener("resize", updateSize);
     updateSize();
+    console.log(projectsWidth);
   }, []);
 
   return (
@@ -161,6 +162,13 @@ export default function Home({skillset, projectsAll, entriesAll}) {
         <div className={styles.subtitleWrapper}>
           <h2 className={styles.subtitle}>My Projects</h2>  
         </div>
+        <div className="tips_section">
+          <p className={"tips"}>
+            <ion-icon name="bulb"></ion-icon>
+            {projectsWidth > 1200 ? "Tip: Hover over the images to learn more about the projects " : "Tip: Tap on the images to learn more about the projects "}
+            <ion-icon name="bulb"></ion-icon>
+          </p>
+        </div>
         <Projects projectsHeight={projectsHeight} projectsWidth={projectsWidth} allProjects={projectsAll} mainPage={true}/>
       </section>
       <section className={styles.section5}>
@@ -168,6 +176,7 @@ export default function Home({skillset, projectsAll, entriesAll}) {
           <h2 className={styles.subtitle}>My blog</h2>  
         </div>
         <BlogIndex entries={entriesAll}/>
+        <Link href={""}><a className={`${styles.btn1} ${styles.customChange3}`}><span className={styles.btnText}>{"All Blog Entries"}</span></a></Link>
       </section>
       <section  id="contact-form" className={styles.section4}>
         <div className={styles.contact_container}>
