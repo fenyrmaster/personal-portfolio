@@ -6,7 +6,7 @@
         background-color: rgb(255, 241, 215);
         position: fixed;
         width: 100%;
-        z-index: 999;
+        z-index: 2050;
         border-bottom: .1rem solid rgb(248, 91, 0);
     }
     &_name{
@@ -15,18 +15,178 @@
         font-family: "Ubuntu Condensed", sans-serif;
         text-transform: uppercase;
     }
+    &_button{
+        display: flex;
+        align-items: center;
+        margin-right: 2rem;
+        background-color: rgb(255, 255, 255);
+        border-left: solid .1rem orange;
+        border-right: solid .1rem orange;
+        padding: .7rem 1rem;
+        transition: .3s ease all;
+        cursor: pointer;
+        &_text{
+            font-family: "Oswald", sans-serif;
+            font-size: 1.3rem;
+            color: rgb(49, 49, 49);
+            font-weight: 800;
+            margin: 0;
+        }
+        &_btn{
+            margin-left: 1rem;
+            width: 2rem;
+            height: .2rem;
+            background-color: black;
+            border-radius: 20rem;
+            position: relative;
+            &::after{
+                content: "";
+                width: 2rem;
+                height: .2rem;
+                background-color: black;
+                border-radius: 20rem;
+                position: absolute;
+                top: -.5rem;
+                transition: .3s;
+            }
+            &::before{
+                content: "";
+                width: 2rem;
+                height: .2rem;
+                background-color: black;
+                border-radius: 20rem;
+                position: absolute;
+                top: .5rem;
+                transition: .3s;
+            }
+        }
+        &_active{
+            background-color: orange;
+            &:hover{
+                background-color: rgb(255, 194, 125) !important;
+            }
+        }
+        &_active &_btn{
+            visibility: hidden;
+            &::after{
+                visibility: visible;
+                transform: rotate(315deg);
+                top: 0 !important;
+            }
+            &::before{
+                visibility: visible;
+                transform: rotate(-315deg);
+                top: 0 !important;
+            }
+        }
+        &:hover{
+            background-color: rgb(255, 239, 213);
+        }
+        &:hover &_btn{
+            &::after{
+                top: -.66rem;
+            }
+            &::before{
+                top: .66rem;
+            }
+        }
+    }
+    &_linksWrapper{
+        position: fixed;
+        top: 100%;
+        width: 100vw;
+        height: 95%;
+        background-color: rgb(255, 247, 228);
+        opacity: 0;
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .4s ease;
+        &_active{
+            top: 5.6%;
+            opacity: 1;
+        }
+    }
+    &_linksWrapper_active &_link{
+        transform: translateY(0%) !important;
+    }
+    &_links{
+        position: relative;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("/images/background_nav.jpg") center center;
+        background-size: cover;
+        margin: 2rem;
+        width: 100%;
+        height: 95%;
+        z-index: 2001;
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+    &_link{
+        transition: .5s .4s transform,  .3s background-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        &_text{
+            text-align: center;
+            color: white;
+            font-family: "Oswald", sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        &:nth-child(1),
+        &:nth-child(3),
+        &:nth-child(5){
+            background-color: rgba(255, 136, 0, 0.623);
+            transform: translateY(100%);
+            &:hover{
+                background-color: rgb(255, 136, 0);
+            }
+        }
+        &:nth-child(2),
+        &:nth-child(4){
+            background-color: rgba(255, 208, 0, 0.616);
+            transform: translateY(-100%);
+            &:hover{
+                background-color: rgb(255, 208, 0);
+            }
+        }
+    }
     @media(max-width: 50em){
         &_container{
-            padding: 1rem;
-            justify-content: center;
             width: 100%;
-        }
-        &_name{
-            display: none;
         }
         &_navigation{
             display: flex;
             flex-wrap: wrap;
+        }
+    }
+    @media(max-width: 62.5em){
+        &_links{
+            flex-direction: column;
+        }
+        &_link{
+            &:nth-child(1),
+            &:nth-child(3),
+            &:nth-child(5){
+                transform: translateY(0%) translateX(100%);
+                &:hover{
+                    background-color: rgb(255, 136, 0);
+                }
+            }
+            &:nth-child(2),
+            &:nth-child(4){
+                transform: translateY(0%) translateX(-100%);
+                &:hover{
+                    background-color: rgb(255, 208, 0);
+                }
+            }
+        }
+        &_linksWrapper_active &_link{
+            transform: translateX(0%) !important;
         }
     }
 }
