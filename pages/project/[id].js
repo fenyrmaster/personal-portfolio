@@ -7,14 +7,19 @@ import Link from "next/dist/client/link";
 import axios from "axios";
 import Footer from "../../components/footer";
 import { Parallax } from "react-parallax";
+import BlogIndex from "../../components/blogIndex";
 
 export async function getStaticProps({params}){
     // Fetch the projects
     const data = await axios.get(`http://localhost:4000/api/projects/${params.id}`);
     const project = data.data.data;
+    //Fetch 3 entries based on the date
+    const entries = await axios.get(`http://localhost:4000/api/blog?limit=3&sort=-postDate`);
+    const entriesAll = entries.data.data;
     return{
         props: {
-            project: project ? project : {}
+            project: project ? project : {},
+            entriesAll
         }
     }
 }
@@ -34,7 +39,7 @@ export async function getStaticPaths() {
     }
 }
 
-export default function ProjectsAll({project}){
+export default function ProjectsAll({project, entriesAll}){
 
     const [ floaterAppear, setFloaterAppear ] = useState(false);
     const [ end, setEnd ] = useState(false);
@@ -165,6 +170,13 @@ export default function ProjectsAll({project}){
                     <Link href={"/"}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to main menu</span></a></Link>
                     <Link href={"/all-projects"}><a className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to all projects</span></a></Link>
                 </div>
+            </section>
+            <section className="smallBlog">
+                <div className={`${styles.subtitleWrapper} ${styles.subtitleCustom2} custom1`}>
+                    <h2 className={styles.subtitle}>Recent Blog entries</h2> 
+                </div>
+                <BlogIndex entries={entriesAll}/>
+                <Link href={"/blog"}><a className={`${styles.btn1} ${styles.customChange3}`}><span className={styles.btnText}>{"All Blog Entries"}</span></a></Link>
             </section>
             <Footer/>
         </div>

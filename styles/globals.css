@@ -274,6 +274,13 @@ input[type="checkbox"]:disabled {
   color: rgb(156, 83, 0);
 }
 
+.smallBlog{
+  background-color: #fffbea;
+  padding: 2rem 0 4rem 0;
+}
+.smallBlog .custom1{
+  margin-bottom: 2rem;
+}
 /* Classes for the texts */
 .tips{
   text-align: center;
@@ -395,13 +402,13 @@ input[type="checkbox"]:disabled {
   font-size: 2.2rem;
   transition: .3s;
 }
-.footer_media ion-icon:nth-child(1):hover{
+.facebook ion-icon:hover{
   color: rgb(22, 76, 255);
 }
-.footer_media ion-icon:nth-child(2):hover{
+.linkedin ion-icon:hover{
   color: rgb(22, 162, 255);
 }
-.footer_media ion-icon:nth-child(3):hover{
+.youtube ion-icon:hover{
   color: rgb(255, 22, 22);
 }
 @media(max-width: 28.125em){

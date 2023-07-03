@@ -18,7 +18,7 @@ const Navigation = () => {
         <>
             <div className={styles.nav_container}>
                 <div className={styles.nav_name_container}>
-                    <h4 className={styles.nav_name}>Brandon</h4>
+                    <Link href={"/"}><h4 className={styles.nav_name}>Brandon</h4></Link>
                 </div>
                 <div className={styles.nav_navigation}>
                     <div onClick={() => handleClick()} className={`${styles.nav_button} ${navActive && styles.nav_button_active}`}>

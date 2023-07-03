@@ -18,6 +18,8 @@
   .header_image img {
     border-radius: 50%;
     position: absolute;
+    width: 22rem;
+    height: 22rem;
     top: 50%;
     right: 50%;
     transform: translate(50%, -50%); }
@@ -71,8 +73,8 @@
   .header_image {
     margin: 12rem 0 5rem 0; }
     .header_image img {
-      width: 10rem;
-      height: 10rem; } }
+      width: 11rem;
+      height: 11rem; } }
 
 @media (max-width: 34.375em) {
   .header_title {
@@ -591,7 +593,8 @@
   font-size: 2rem;
   margin: .5rem 0 .5rem 1.5rem;
   font-family: "Ubuntu Condensed", sans-serif;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  cursor: pointer; }
 
 .nav_button {
   display: flex;

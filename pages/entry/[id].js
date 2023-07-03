@@ -6,15 +6,19 @@ import Navigation from "../../components/navigation";
 import Link from "next/dist/client/link";
 import axios from "axios";
 import Footer from "../../components/footer";
+import BlogIndex from "../../components/blogIndex";
 import { Parallax } from "react-parallax";
 
 export async function getStaticProps({params}){
     // Fetch the projects
     const data = await axios.get(`http://localhost:4000/api/blog/${params.id}`);
     const entry = data.data.data;
+    const entries = await axios.get(`http://localhost:4000/api/blog?limit=4&sort=-postDate`);
+    const entriesAll = entries.data.data;
     return{
         props: {
-            entry: entry ? entry : {}
+            entry: entry ? entry : {},
+            entriesAll
         }
     }
 }
@@ -34,12 +38,22 @@ export async function getStaticPaths() {
     }
 }
 
-export default function EntryView({entry}){
+export default function EntryView({entry, entriesAll}){
 
     const [ floaterAppear, setFloaterAppear ] = useState(false);
     const [ end, setEnd ] = useState(false);
+    const [ entries, setEntries ] = useState([]);
     const floaterRef = useRef(null);
     const footerRef = useRef(null);
+
+    useEffect(() => {
+        let newEntries = entriesAll.filter(el => el._id != entry._id);
+        if(newEntries.length == 4){
+            newEntries.pop();
+        }
+        console.log(newEntries);
+        setEntries(newEntries);
+    }, [entriesAll]);
 
     const Details = styled.div`
         position: absolute;
@@ -75,10 +89,6 @@ export default function EntryView({entry}){
         }
     `;
 
-    //const parallax = () => {
-    //    let value = (-window.scrollY * .2 + 380 + "px");
-    //    setParallaxValue(value);
-    //}
     const dataFixed = () => {
         let offset = floaterRef.current?.clientHeight - 180;
         let stickness = footerRef.current?.clientHeight + 250;
@@ -142,8 +152,15 @@ export default function EntryView({entry}){
                     ? <img key={content.url} className={styles.project_description_img} src={content.url} />
                     : <p className={content.type}>{content.children.map(el => el.link ? <a target={"_blank"} href={el.url} className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""} link_url`}>{el.text}</a> : <span className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""}`}>{el.text}</span>)}</p>) }
                     <Link href={"/"}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to main menu</span></a></Link>
-                    <Link href={"/all-projects"}><a className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to all entries</span></a></Link>
+                    <Link href={"/blog"}><a className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to all entries</span></a></Link>
                 </div>
+            </section>
+            <section className="smallBlog">
+                <div className={`${styles.subtitleWrapper} ${styles.subtitleCustom2} custom1`}>
+                    <h2 className={styles.subtitle}>Recent Blog entries</h2> 
+                </div>
+                { entries.length != 0 && <BlogIndex entries={entries}/>}
+                <Link href={"/blog"}><a className={`${styles.btn1} ${styles.customChange3}`}><span className={styles.btnText}>{"All Blog Entries"}</span></a></Link>
             </section>
             <Footer/>
         </div>

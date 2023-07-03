@@ -24,7 +24,7 @@ const BigCard = ({entry}) => {
                         <ion-icon name={"calendar-outline"}></ion-icon>
                     </div>
                 </div>
-                <Link href={`entry/${entry.slug}`}><a className={styles.blogEntry_bigCard_btn}><span className={styles.btnText}>View entry</span></a></Link>
+                <Link href={`/entry/${entry.slug}`}><a className={styles.blogEntry_bigCard_btn}><span className={styles.btnText}>View entry</span></a></Link>
             </div>
         </div>
     );

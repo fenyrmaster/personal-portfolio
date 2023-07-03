@@ -93,6 +93,9 @@ export default function Home({skillset, projectsAll, entriesAll}) {
     console.log(projectsWidth);
   }, []);
 
+  //About me to be added in the future (if needed)
+  //<Link href="/about-me"><a className={styles.btn1}><span className={styles.btnText}>More about me</span></a></Link>
+
   return (
     <>
       <Navigation/>
@@ -102,17 +105,23 @@ export default function Home({skillset, projectsAll, entriesAll}) {
           <h1 className={styles.header_title}>I'm <span className={styles.header_span}>brandon</span> Yahir. </h1>
           <h2 className={styles.header_title}>I develop <span className={styles.header_span}>sites</span> that <span className={styles.header_span}>empower</span> brands.</h2>
           <p className={styles.header_paragraph}>Are you looking for a website to manage your business? Or reach more clients? i got you covered.</p>
-          <Link href="/about-me"><a className={styles.btn1}><span className={styles.btnText}>More about me</span></a></Link>
-          <Link href="/cv"><a className={`${styles.btn1} ${styles.btnSep}`}><span className={styles.btnText}>Download CV</span></a></Link>
+          <Link href="/cv"><a className={`${styles.btn1}`}><span className={styles.btnText}>Download CV</span></a></Link>
         </div>
         <div className={styles.header_image}>
-          <img src="/images/default.jpg"/>
+          <img src={process.env.NEXT_PUBLIC_MAIN_IMAGE}/>
           { animationActive && <CanvasRodeo shrink={shrinkWidth}/> }
         </div>
       </header>
       <section className={styles.section2}>
         <div className={styles.subtitleWrapper}>
           <h2 className={styles.subtitle}>My skills</h2>  
+        </div>
+        <div className="tips_section">
+          <p className={"tips"}>
+            <ion-icon name="bulb"></ion-icon>
+            {projectsWidth > 1200 ? "Tip: Click and hold inside the container to move the skills. " : "Tip: Tap and hold to move the skills. "}
+            <ion-icon name="bulb"></ion-icon>
+          </p>
         </div>
         <h4 className={styles.separators}>Front-end Skills:</h4>
         <div className={styles.swiperWrapper}>
@@ -176,7 +185,7 @@ export default function Home({skillset, projectsAll, entriesAll}) {
           <h2 className={styles.subtitle}>My blog</h2>  
         </div>
         <BlogIndex entries={entriesAll}/>
-        <Link href={""}><a className={`${styles.btn1} ${styles.customChange3}`}><span className={styles.btnText}>{"All Blog Entries"}</span></a></Link>
+        <Link href={"/blog"}><a className={`${styles.btn1} ${styles.customChange3}`}><span className={styles.btnText}>{"All Blog Entries"}</span></a></Link>
       </section>
       <section  id="contact-form" className={styles.section4}>
         <div className={styles.contact_container}>
