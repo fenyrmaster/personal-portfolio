@@ -148,7 +148,6 @@ const Leaf = ({ attributes, children, leaf }) => {
   }
 
   if(leaf.link){
-    console.log(props);
     children = <LinkSlate {...props}/>
   }
 

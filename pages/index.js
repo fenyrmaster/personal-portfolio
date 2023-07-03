@@ -90,7 +90,6 @@ export default function Home({skillset, projectsAll, entriesAll}) {
   useEffect(() => {
     window.addEventListener("resize", updateSize);
     updateSize();
-    console.log(projectsWidth);
   }, []);
 
   //About me to be added in the future (if needed)

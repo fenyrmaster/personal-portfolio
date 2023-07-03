@@ -14,7 +14,6 @@ export const SkillsProvider = ({children}) => {
             const skills = await clienteAxios.get("/skills");
             setSkills(skills.data.data);
         } catch(error){
-            console.log(error);
         }
     }
 

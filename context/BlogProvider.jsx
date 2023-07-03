@@ -27,7 +27,6 @@ export const BlogProvider = ({children}) => {
             const entries = await clienteAxios.get("/blog");
             setEntries(entries.data.data);
         } catch(error){
-            console.log(error);
         }
     }
 

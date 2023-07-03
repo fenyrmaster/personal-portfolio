@@ -30,7 +30,6 @@ export const ProjectProvider = ({children}) => {
             const proyectos = await clienteAxios.get("/projects");
             setProjects(proyectos.data.data);
         } catch(error){
-            console.log(error);
         }
     }
 

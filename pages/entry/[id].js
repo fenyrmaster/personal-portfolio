@@ -51,7 +51,6 @@ export default function EntryView({entry, entriesAll}){
         if(newEntries.length == 4){
             newEntries.pop();
         }
-        console.log(newEntries);
         setEntries(newEntries);
     }, [entriesAll]);
 
