@@ -146,10 +146,10 @@ export default function EntryView({entry, entriesAll}){
                 <div className={styles.blog_separator}></div>
                 <div ref={footerRef} className={styles.blog_description}>
                     { entry.text.map(content => (content.type === "bulleted-list" || content.type === "numbered-list") 
-                    ? <ul className={content.type}>{content.children.map(content2 => content2.children.map(content3 => <li className={`${content3.code ? "code" : ""} ${content3.italic ? "italic" : ""} ${content3.underline ? "underline" : ""} ${content3.bold ? "bold" : ""}`}>{content3.text}</li>) )}</ul>
+                    ? <ul className={content.type}>{content.children.map(content2 => content2.children.map(content3 => <li key={content2.text} className={`${content3.code ? "code" : ""} ${content3.italic ? "italic" : ""} ${content3.underline ? "underline" : ""} ${content3.bold ? "bold" : ""}`}>{content3.text}</li>) )}</ul>
                     : (content.type === "image") 
                     ? <img key={content.url} className={styles.project_description_img} src={content.url} />
-                    : <p className={content.type}>{content.children.map(el => el.link ? <a target={"_blank"} href={el.url} className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""} link_url`}>{el.text}</a> : <span className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""}`}>{el.text}</span>)}</p>) }
+                    : <p className={content.type}>{content.children.map(el => el.link ? <a target={"_blank"} rel={"noreferrer"} href={el.url} className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""} link_url`}>{el.text}</a> : <span className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""}`}>{el.text}</span>)}</p>) }
                     <Link href={"/"}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to main menu</span></a></Link>
                     <Link href={"/blog"}><a className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to all entries</span></a></Link>
                 </div>

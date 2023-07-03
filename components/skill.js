@@ -24,7 +24,7 @@ const Skill = ({skill}) => {
 
     return(
         <div className={styles.swiperContent}>
-            <Image className={styles.swiperImage} src={skill?.image} width={100} height={100}/>
+            <Image className={styles.swiperImage} alt={skill?.nombre} src={skill?.image} width={100} height={100}/>
             <p className={styles.swiperName}>{skill?.nombre}</p>
             <p className={styles.skillText}>Skill level:</p>
             <p className={styles.skillLevel}>{skill?.level}</p>

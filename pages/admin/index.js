@@ -7,8 +7,10 @@ import clienteAxios from "../../config/clienteAxios";
 
 const loginAdmin = () => {
     
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [ password, setPassword ] = useState("");
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     let router = useRouter();
 
     const login = async e => {

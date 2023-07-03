@@ -10,7 +10,7 @@ const SkillAdmin = ({deleteFn, skillData, activateEditing}) => {
 
     return(
         <div className={styles.skillAdmContainer}>
-            <Image className={styles.swiperImage} src={skillData.image} width={100} height={100}/>
+            <Image className={styles.swiperImage} alt={skillData.nombre} src={skillData.image} width={100} height={100}/>
             <p className={`${styles.swiperName} ${skillData.role}`}>{skillData.nombre}</p>
             <p className={styles.skillText}>Skill level:</p>
             <p className={`${styles.skillLevel} ${styles.skilladm}`}>{skillData.level}</p>

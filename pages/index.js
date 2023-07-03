@@ -101,13 +101,13 @@ export default function Home({skillset, projectsAll, entriesAll}) {
       <AnimationController/>
       <header className={styles.header_container}>
         <div className={styles.header_text}>
-          <h1 className={styles.header_title}>I'm <span className={styles.header_span}>brandon</span> Yahir. </h1>
+          <h1 className={styles.header_title}>I&quot;m <span className={styles.header_span}>brandon</span> Yahir. </h1>
           <h2 className={styles.header_title}>I develop <span className={styles.header_span}>sites</span> that <span className={styles.header_span}>empower</span> brands.</h2>
           <p className={styles.header_paragraph}>Are you looking for a website to manage your business? Or reach more clients? i got you covered.</p>
           <Link href="/cv"><a className={`${styles.btn1}`}><span className={styles.btnText}>Download CV</span></a></Link>
         </div>
         <div className={styles.header_image}>
-          <img src={process.env.NEXT_PUBLIC_MAIN_IMAGE}/>
+          <img alt="me" src={process.env.NEXT_PUBLIC_MAIN_IMAGE}/>
           { animationActive && <CanvasRodeo shrink={shrinkWidth}/> }
         </div>
       </header>

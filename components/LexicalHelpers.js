@@ -24,6 +24,8 @@ export const Button = React.forwardRef(
   )
 );
 
+Button.displayName = "ButtonLexical";
+
 export const EditorValue = React.forwardRef(
   ({ className, value, ...props }, ref) => {
     const textLines = value.document.nodes
@@ -50,7 +52,7 @@ export const EditorValue = React.forwardRef(
             background: #f8f8f8;
           `}
         >
-          Slate's value as text
+          Slate value as text
         </div>
         <div
           className={css`
@@ -70,6 +72,8 @@ export const EditorValue = React.forwardRef(
   }
 );
 
+EditorValue.displayName = "EditorLexical";
+
 export const Icon = React.forwardRef(({ className, ...props }, ref) => (
   <span
     {...props}
@@ -84,6 +88,8 @@ export const Icon = React.forwardRef(({ className, ...props }, ref) => (
     )}
   />
 ));
+
+Icon.displayName = "IconLexical";
 
 export const Instruction = React.forwardRef(({ className, ...props }, ref) => (
   <div
@@ -101,6 +107,8 @@ export const Instruction = React.forwardRef(({ className, ...props }, ref) => (
     )}
   />
 ));
+
+Instruction.displayName = "InstructionLexical";
 
 export const Menu = React.forwardRef(({ className, ...props }, ref) => (
   <div
@@ -120,6 +128,8 @@ export const Menu = React.forwardRef(({ className, ...props }, ref) => (
     )}
   />
 ));
+
+Menu.displayName = "MenuLexical";
 
 export const Portal = ({ children }) => {
   return ReactDOM.createPortal(children, document.body);
@@ -141,3 +151,6 @@ export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
     )}
   />
 ));
+
+
+Toolbar.displayName = "Toolbar";

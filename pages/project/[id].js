@@ -149,7 +149,7 @@ export default function ProjectsAll({project, entriesAll}){
                     <div className={styles.project_data}>
                         <p className={styles.project_data_paragraph}>Technologies used:</p>
                         <div className={styles.project_data_technologies}>
-                            { project.technologies.map(tech => <Image className={styles.swiperImage} key={tech.id} src={tech.image} width={45} height={45}/>) }
+                            { project.technologies.map(tech => <Image className={styles.swiperImage} key={tech.id} alt={tech.nombre} src={tech.image} width={45} height={45}/>) }
                         </div>
                     </div>
                     <Link href={project.githubUrl}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>github Repository.</span></a></Link>
@@ -157,15 +157,15 @@ export default function ProjectsAll({project, entriesAll}){
                 </div>
                 <div ref={footerRef} className={styles.project_description}>
                     { project.text.map(content => (content.type === "bulleted-list" || content.type === "numbered-list") 
-                    ? <ul className={content.type}>{content.children.map(content2 => content2.children.map(content3 => <li className={`${content3.code ? "code" : ""} ${content3.italic ? "italic" : ""} ${content3.underline ? "underline" : ""} ${content3.bold ? "bold" : ""}`}>{content3.text}</li>) )}</ul>
+                    ? <ul className={content.type}>{content.children.map(content2 => content2.children.map(content3 => <li key={content3.text} className={`${content3.code ? "code" : ""} ${content3.italic ? "italic" : ""} ${content3.underline ? "underline" : ""} ${content3.bold ? "bold" : ""}`}>{content3.text}</li>) )}</ul>
                     : (content.type === "image") 
                     ? <img key={content.url} className={styles.project_description_img} src={content.url} />
-                    : <p className={content.type}>{content.children.map(el => el.link ? <a target={"_blank"} href={el.url} className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""} link_url`}>{el.text}</a> : <span className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""}`}>{el.text}</span>)}</p>) }
+                    : <p className={content.type}>{content.children.map(el => el.link ? <a target={"_blank"} rel={"noreferrer"} href={el.url} className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""} link_url`}>{el.text}</a> : <span className={`${el.code ? "code" : ""} ${el.italic ? "italic" : ""} ${el.underline ? "underline" : ""} ${el.bold ? "bold" : ""}`}>{el.text}</span>)}</p>) }
                     <div className={`${styles.subtitleWrapper} ${styles.subtitleCustom2} custom1`}>
                         <h2 className={styles.subtitle}>gallery</h2> 
                     </div>
                     <div className={styles.masonry}>
-                        { project.gallery.map(pic => <img className={styles.masonry_img} src={pic}/>) }
+                        { project.gallery.map(pic => <img key={pic} className={styles.masonry_img} src={pic}/>) }
                     </div>
                     <Link href={"/"}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to main menu</span></a></Link>
                     <Link href={"/all-projects"}><a className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Go back to all projects</span></a></Link>
