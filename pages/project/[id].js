@@ -152,8 +152,8 @@ export default function ProjectsAll({project, entriesAll}){
                             { project.technologies.map(tech => <Image className={styles.swiperImage} key={tech.id} alt={tech.nombre} src={tech.image} width={45} height={45}/>) }
                         </div>
                     </div>
-                    <Link href={project.githubUrl}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>github Repository.</span></a></Link>
-                    <Link href={project.liveUrl}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Live website.</span></a></Link>
+                    <Link href={project?.githubUrl ?? ""}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>github Repository.</span></a></Link>
+                    <Link href={project?.liveUrl ?? ""}><a target="_blank" className={`${styles.btn1} ${styles.customChange2}`}><span className={styles.btnText}>Live website.</span></a></Link>
                 </div>
                 <div ref={footerRef} className={styles.project_description}>
                     { project.text.map(content => (content.type === "bulleted-list" || content.type === "numbered-list") 

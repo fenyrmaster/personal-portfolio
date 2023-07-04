@@ -9,7 +9,7 @@ const Project = ({ tipo, project }) => {
                 <img alt={project.nombre} className={styles.techImg} src={project.image}/>
             </div>
             <div className={styles.linkWrapper}>
-                <Link href={`/project/${project.slug}`}><a className={styles.btn1}><span className={styles.btnText}>More project details</span></a></Link>
+                <Link href={project ? `/project/${project.slug}` : ""}><a className={styles.btn1}><span className={styles.btnText}>More project details</span></a></Link>
             </div>
             <h4 className={styles.tecnologies}>Tecnologies used:</h4>
             <div className={styles.tech}>

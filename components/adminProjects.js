@@ -14,7 +14,7 @@ const AdminProject = ({ project, deletion, setProjectDelete, prepareEdit, setEdi
                 </div>
                 <div className={styles.adminProject_Buttons}>
                     <button onClick={() => {prepareEdit(project); setEditName(project.nombre)}} className={styles.skillEdit}>Edit</button>
-                    <Link href={`/project/${project.slug}`}><a className={styles.projectView} target="_blank">View</a></Link>
+                    <Link href={project ? `/project/${project.slug}` : ""}><a className={styles.projectView} target="_blank">View</a></Link>
                     <button onClick={() => {deletion(true); setProjectDelete(project)}} className={styles.skillDelete}>Delete</button>
                 </div>
             </div>
