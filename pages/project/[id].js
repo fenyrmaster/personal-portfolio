@@ -11,10 +11,10 @@ import BlogIndex from "../../components/blogIndex";
 
 export async function getStaticProps({params}){
     // Fetch the projects
-    const data = await axios.get(`http://localhost:4000/api/projects/${params.id}`);
+    const data = await axios.get(`https://brandon-data.onrender.com/api/projects/${params.id}`);
     const project = data.data.data;
     //Fetch 3 entries based on the date
-    const entries = await axios.get(`http://localhost:4000/api/blog?limit=3&sort=-postDate`);
+    const entries = await axios.get(`https://brandon-data.onrender.com/api/blog?limit=3&sort=-postDate`);
     const entriesAll = entries.data.data;
     return{
         props: {
@@ -25,7 +25,7 @@ export async function getStaticProps({params}){
 }
 
 export async function getStaticPaths() {
-    const projects = await axios.get(`http://localhost:4000/api/projects`);
+    const projects = await axios.get(`https://brandon-data.onrender.com/api/projects`);
     const paths = projects.data.data.map(project => {
         return{
             params: {

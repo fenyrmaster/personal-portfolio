@@ -8,7 +8,7 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 
 export async function getStaticProps(){
-    const data = await axios.get(`http://localhost:4000/api/skills`);
+    const data = await axios.get(`https://brandon-data.onrender.com/api/skills`);
     const skillset = data.data.data;
     return{
         props: {

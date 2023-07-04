@@ -25,13 +25,13 @@ import Swal from "sweetalert2";
 
 export async function getStaticProps(){
   // Fetch the skills
-  const data = await axios.get(`http://localhost:4000/api/skills`);
+  const data = await axios.get(`https://brandon-data.onrender.com/api/skills`);
   const skillset = data.data.data;
   // Fetch the projects
-  const project = await axios.get(`http://localhost:4000/api/projects?limit=6&sort=-completionDate`);
+  const project = await axios.get(`https://brandon-data.onrender.com/api/projects?limit=6&sort=-completionDate`);
   const projectsAll = project.data.data;
   // Finally, fetch 5 blog entries
-  const entries = await axios.get(`http://localhost:4000/api/blog?limit=6&sort=-postDate`);
+  const entries = await axios.get(`https://brandon-data.onrender.com/api/blog?limit=6&sort=-postDate`);
   const entriesAll = entries.data.data;
   return{
       props: {

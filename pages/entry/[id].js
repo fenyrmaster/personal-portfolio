@@ -11,9 +11,9 @@ import { Parallax } from "react-parallax";
 
 export async function getStaticProps({params}){
     // Fetch the projects
-    const data = await axios.get(`http://localhost:4000/api/blog/${params.id}`);
+    const data = await axios.get(`https://brandon-data.onrender.com/api/blog/${params.id}`);
     const entry = data.data.data;
-    const entries = await axios.get(`http://localhost:4000/api/blog?limit=4&sort=-postDate`);
+    const entries = await axios.get(`https://brandon-data.onrender.com/api/blog?limit=4&sort=-postDate`);
     const entriesAll = entries.data.data;
     return{
         props: {
@@ -24,7 +24,7 @@ export async function getStaticProps({params}){
 }
 
 export async function getStaticPaths() {
-    const entries = await axios.get(`http://localhost:4000/api/blog`);
+    const entries = await axios.get(`https://brandon-data.onrender.com/api/blog`);
     const paths = entries.data.data.map(entry => {
         return{
             params: {

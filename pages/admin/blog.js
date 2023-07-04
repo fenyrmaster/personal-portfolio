@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import BlogContext from "../../context/BlogProvider";
 
 export async function getStaticProps(){
-   const data = await axios.get(`http://localhost:4000/api/blog`);
+   const data = await axios.get(`https://brandon-data.onrender.com/api/blog`);
    const entriesAPI = data.data.data;
    return{
        props: {

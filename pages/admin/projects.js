@@ -9,9 +9,9 @@ import Swal from "sweetalert2";
 import ProjectContext from "../../context/ProjectProvider";
 
 export async function getStaticProps(){
-    const data = await axios.get(`http://localhost:4000/api/skills?fields=[" image "]`);
+    const data = await axios.get(`https://brandon-data.onrender.com/api/skills?fields=[" image "]`);
     const skillset = data.data.data;
-    const project = await axios.get(`http://localhost:4000/api/projects`);
+    const project = await axios.get(`https://brandon-data.onrender.com/api/projects`);
     const projectsAll = project.data.data;
     return{
         props: {
