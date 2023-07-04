@@ -9,7 +9,7 @@ import AnimationController from "../components/animationController";
 
 export async function getStaticProps(){
     // Fetch the projects
-    const project = await axios.get(`https://https://brandon-data.onrender.com/api/projects?sort=-completionDate`);
+    const project = await axios.get(`https://brandon-data.onrender.com/api/projects?sort=-completionDate`);
     const projectsAll = project.data.data;
     return{
         props: {

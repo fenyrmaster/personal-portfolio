@@ -12,7 +12,7 @@ import PublicContext from "../context/PublicProvider";
 
 export async function getStaticProps(){
     // Fetch the projects
-    const project = await axios.get(`http://https://brandon-data.onrender.com/api/blog?sort=-postDate`);
+    const project = await axios.get(`https://brandon-data.onrender.com/api/blog?sort=-postDate`);
     const blogEntries = project.data.data;
     return{
         props: {
