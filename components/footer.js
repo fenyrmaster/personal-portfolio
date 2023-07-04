@@ -20,9 +20,9 @@ const Footer = () => {
                     <Link href="/#contact-form"><a className={styles.navButtons}><span className={styles.btnTextNav}>Contact me</span></a></Link>
                 </div>
                 <div className={"footer_media"}>
-                    {process.env.NEXT_PUBLIC_FACEBOOK != "" && <div className="facebook"><Link href={process.env.NEXT_PUBLIC_FACEBOOK}><ion-icon name="logo-facebook"></ion-icon></Link></div>}
-                    {process.env.NEXT_PUBLIC_LINKEDIN != "" && <div className="linkedin"><Link href={process.env.NEXT_PUBLIC_LINKEDIN}><ion-icon name="logo-linkedin"></ion-icon></Link></div>}
-                    {process.env.NEXT_PUBLIC_YOUTUBE != "" && <div className="youtube"><Link href={process.env.NEXT_PUBLIC_YOUTUBE}><ion-icon name="logo-youtube"></ion-icon></Link></div>}
+                    <div className="facebook"><Link href={process.env.NEXT_PUBLIC_FACEBOOK}><ion-icon name="logo-facebook"></ion-icon></Link></div>
+                    <div className="linkedin"><Link href={process.env.NEXT_PUBLIC_LINKEDIN}><ion-icon name="logo-linkedin"></ion-icon></Link></div>
+                    <div className="youtube"><Link href={process.env.NEXT_PUBLIC_YOUTUBE}><ion-icon name="logo-youtube"></ion-icon></Link></div>
                 </div>
             </div>
         </footer>
