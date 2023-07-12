@@ -38,7 +38,8 @@ export async function getStaticProps(){
           projectsAll,
           skillset,
           entriesAll
-      }
+      },
+      revalidate: 60
   }
 }
 
